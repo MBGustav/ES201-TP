@@ -13,7 +13,7 @@ import m5
 from m5.objects import (
     System, Root, Process, SEWorkload,
     SrcClockDomain, VoltageDomain, AddrRange,
-    DerivO3CPU, TimingSimpleCPU,
+    DerivO3CPU, TimingSimpleCPU, MinorCPU,
     SystemXBar, MemCtrl, DDR3_1600_8x8,
     Cache, L2XBar,
     FUPool, FUDesc, OpDesc
@@ -97,7 +97,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--cmd", required=True, help="RISC-V binary to run (static recommended)")
     ap.add_argument("--args", default="", help="Arguments to pass to program (single string)")
-    ap.add_argument("--cpu-type", choices=["O3", "TimingSimpleCPU"], default="O3")
+    ap.add_argument("--cpu-type", choices=["O3", "TimingSimpleCPU", "MinorCPU"], default="O3")
     ap.add_argument("--cpu-clock", default="1GHz")
     ap.add_argument("--mem-size", default="8GB")
     ap.add_argument("--caches", action="store_true", help="Enable simple private L1 + shared L2")
@@ -123,6 +123,8 @@ def main():
     if args.cpu_type == "O3":
         system.cpu = DerivO3CPU()
         system.cpu.fuPool = build_fu_pool(args.ialu, args.imult, args.fpalu, args.fpmult, args.memport)
+    elif args.cpu_type == "Minor":
+        system.cpu = MinorCPU()
     else:
         system.cpu = TimingSimpleCPU()
 
