@@ -144,6 +144,13 @@ def main():
     # TP predictors only
     ap.add_argument("--bpred", choices=["nottaken", "taken", "bimod", "2lev", "tournament"], default="bimod")
 
+    # TP RUU
+    ap.add_argument("--ruu", type=int, default=64, help="RUU/ROB size (maps to numROBEntries)")
+    ap.add_argument("--iq", type=int, default=64, help="Issue Queue entries (numIQEntries)")
+    ap.add_argument("--lq", type=int, default=32, help="Load Queue entries (LQEntries)")
+    ap.add_argument("--sq", type=int, default=32, help="Store Queue entries (SQEntries)")
+
+
     args = ap.parse_args()
     print("PRED_SE_FU: parsed args", args)
 
@@ -156,6 +163,11 @@ def main():
     if args.cpu_type == "O3":
         system.cpu = DerivO3CPU()
         system.cpu.fuPool = build_fu_pool(args.ialu, args.imult, args.fpalu, args.fpmult, args.memport)
+        system.cpu.numROBEntries = args.ruu
+        system.cpu.numIQEntries  = args.iq
+        system.cpu.LQEntries     = args.lq
+        system.cpu.SQEntries     = args.sq
+
 
         # Branch predictor selection (TP)
         if args.bpred == "bimod":
