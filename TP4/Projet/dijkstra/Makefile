@@ -1,19 +1,26 @@
-# Makefile
+# Makefile — RISC-V (gem5 SE)
 
 # ---------- TOOLCHAIN ----------
-# ARM 
-CC = arm-linux-gnueabihf-gcc
+CC = riscv64-linux-gnu-gcc
 
-CFLAGS = -O3 -static -Wall -std=c99
 
-all: dijkstra_large.arm dijkstra_small.arm
+CFLAGS = -O3 -static -fno-pie -no-pie -Wall -std=c99 \
+         -march=rv64gc -mabi=lp64d \
+         -fno-builtin -fno-asynchronous-unwind-tables -fno-unwind-tables
 
-dijkstra_large.arm: dijkstra_large.c Makefile
-	$(CC) $(CFLAGS) dijkstra_large.c -o dijkstra_large.arm
+all: dijkstra_large.riscv dijkstra_small.riscv
 
-dijkstra_small.arm: dijkstra_small.c Makefile
-	$(CC) $(CFLAGS) dijkstra_small.c -o dijkstra_small.arm
+dijkstra_large.riscv: dijkstra_large.c Makefile
+	$(CC) $(CFLAGS) dijkstra_large.c -o dijkstra_large.riscv
+
+dijkstra_small.riscv: dijkstra_small.c Makefile
+	$(CC) $(CFLAGS) dijkstra_small.c -o dijkstra_small.riscv
+
+check: all
+	file dijkstra_large.riscv dijkstra_small.riscv
 
 clean:
-	rm -f dijkstra_large.arm dijkstra_small.arm *.o
+	rm -f dijkstra_large.riscv dijkstra_small.riscv *.o
 	rm -rf m5out_* output*
+
+.PHONY: all clean check

@@ -56,7 +56,7 @@ def build_system(args):
     system.cpu = DerivO3CPU()
 
     # IMPORTANT: O3 default fetch buffer = 64B dans certaines versions gem5.
-    # Avec des lignes de cache 32B, ça déclenche le fatal "fetch buffer 64 > block 32".
+    # Avec des lignes de cache 32B, ca declenche le fatal "fetch buffer 64 > block 32".
     system.cpu.fetchBufferSize = 32
 
     # Fetch queue
@@ -67,19 +67,19 @@ def build_system(args):
     system.cpu.issueWidth   = 4
     system.cpu.commitWidth  = 2
 
-    # Cohérence autres largeurs
+    # Coherence autres largeurs
     system.cpu.fetchWidth    = 2
     system.cpu.renameWidth   = 4
     system.cpu.dispatchWidth = 4
     system.cpu.wbWidth       = 2
 
-    # RUU/LSQ : 2 / 8  (interprétation gem5: ROB=2, LQ=8, SQ=8)
+    # RUU/LSQ : 2 / 8  (interpretation gem5: ROB=2, LQ=8, SQ=8)
     system.cpu.numROBEntries = 2
     system.cpu.LQEntries = 8
     system.cpu.SQEntries = 8
 
     # Branch predictor : bimodal, BTB=256
-    # BiModeBP correspond au "bimodal/bi-mode" côté gem5 classic.
+    # BiModeBP correspond au "bimodal/bi-mode" cote gem5 classic.
     system.cpu.branchPred = BiModeBP()
     system.cpu.branchPred.BTBEntries = 256
 

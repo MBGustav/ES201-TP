@@ -1,24 +1,21 @@
-# Makefile Blowfish — ARM (gem5 SE)
+# Makefile Blowfish — RISC-V (gem5 SE)
 
 # ---------- TOOLCHAIN ----------
-# ARM 32 bits (recommandé avec build/ARM/gem5.opt)
-CC      = arm-linux-gnueabihf-gcc
-AR      = arm-linux-gnueabihf-ar
-RANLIB  = arm-linux-gnueabihf-ranlib
+CC     = riscv64-linux-gnu-gcc
+AR     = riscv64-linux-gnu-ar
+RANLIB = riscv64-linux-gnu-ranlib
 
-# Pour AArch64 (build/ARM64/gem5.opt), décommente:
-#CC     ?= aarch64-linux-gnu-gcc
-#AR     ?= aarch64-linux-gnu-ar
-#RANLIB ?= aarch64-linux-gnu-ranlib
-# --------------------------------
 
 # Options perf
 #OPTS= -DBF_PTR
 #OPTS= -DBF_PTR2
 OPTS=
 
-# Gem5 SE: statique conseillé
-CFLAG  = -static -O3 -fomit-frame-pointer -Wall -std=c99
+# Gem5 SE: statique conseillé (RISC-V 64)
+CFLAG  = -static -O3 -fomit-frame-pointer -Wall -std=c99 \
+         -fno-pie -no-pie \
+         -march=rv64gc -mabi=lp64d \
+         -fno-builtin -fno-asynchronous-unwind-tables -fno-unwind-tables
 CFLAGS = $(OPTS) $(CFLAG)
 
 # Assembler version: on force la version C (pas les asm x86)
@@ -30,10 +27,10 @@ HEADERS= bf_locl.h blowfish.h bf_pi.h
 
 BLIB   = libblowfish.a
 
-TARGET = bf.arm
+TARGET = bf.riscv
 
-# Optionnel: outils de test en ARM
-TEST_BINS = bftest.arm bfspeed.arm
+# Optionnel: outils de test en RISC-V
+TEST_BINS = bftest.riscv bfspeed.riscv
 
 all: $(BLIB) $(TARGET)
 
@@ -48,10 +45,10 @@ $(TARGET): bf.o $(BLIB)
 	$(CC) $(CFLAGS) -o $(TARGET) bf.o $(BLIB)
 
 # -------- Optional test binaries --------
-bftest.arm: bftest.o $(BLIB)
+bftest.riscv: bftest.o $(BLIB)
 	$(CC) $(CFLAGS) -o $@ bftest.o $(BLIB)
 
-bfspeed.arm: bfspeed.o $(BLIB)
+bfspeed.riscv: bfspeed.o $(BLIB)
 	$(CC) $(CFLAGS) -o $@ bfspeed.o $(BLIB)
 
 tests: $(BLIB) $(TEST_BINS)
@@ -60,8 +57,11 @@ tests: $(BLIB) $(TEST_BINS)
 %.o: %.c $(HEADERS) Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
 
+check: all
+	file $(TARGET) $(TEST_BINS) 2>/dev/null || true
+
 clean:
 	/bin/rm -f *.o core tags $(TARGET) $(TEST_BINS) $(BLIB) .nfs* *.old *.bak output*
 	/bin/rm -f asm/*.o
 
-.PHONY: all clean tests
+.PHONY: all clean tests check

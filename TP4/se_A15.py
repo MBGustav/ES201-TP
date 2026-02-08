@@ -41,7 +41,7 @@ class L2Cache(Cache):
 
 def parse_args():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--cmd", required=True, help="binaire ARM à exécuter")
+    ap.add_argument("--cmd", required=True, help="binaire ARM a executer")
     ap.add_argument("--options", nargs=argparse.REMAINDER, default=[], help="args du binaire")
     ap.add_argument("--out", default="", help="juste informatif")
     ap.add_argument("--clock", default="2GHz")
@@ -69,7 +69,7 @@ def build_system(args):
     system.cpu.issueWidth   = 8
     system.cpu.commitWidth  = 4
 
-    # Pour cohérence des autres largeurs O3
+    # Pour coherence des autres largeurs O3
     system.cpu.fetchWidth    = 4
     system.cpu.renameWidth   = 8
     system.cpu.dispatchWidth = 8
@@ -81,7 +81,7 @@ def build_system(args):
     system.cpu.SQEntries = 16
 
     # Branch predictor : "2 level", BTB=256
-    # En gem5 classic, LocalBP correspond à un 2-level local predictor.
+    # En gem5 classic, LocalBP correspond a un 2-level local predictor.
     system.cpu.branchPred = LocalBP()
     system.cpu.branchPred.BTBEntries = 256
 
