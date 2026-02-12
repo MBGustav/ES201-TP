@@ -1,0 +1,76 @@
+\subsubsection{Q1 — Pourcentage par classe d’instructions}
+
+\begin{formal}
+\textbf{Énoncé (Q1).}
+Générez le pourcentage de chaque classe d'instructions de \texttt{dijkstra} et \texttt{BlowFish}
+(en utilisant \texttt{gem5}) et reportez les valeurs dans un tableau.
+\end{formal}
+
+\paragraph{Objectif.}
+Identifier la \emph{répartition} des classes d’instructions (contrôle, entiers, mémoire, flottants, etc.)
+afin d’anticiper quelles unités fonctionnelles (ALU, LSU, unités de branchement, etc.) sont les plus sollicitées.
+
+\paragraph{Méthodologie.}
+\begin{itemize}[leftmargin=*, itemsep=0.2em]
+  \item Compilation RISC-V (conforme au sujet) :
+  \begin{verbatim}
+REPO_ROOT=/path/to/ES201-TP
+cd "$REPO_ROOT"
+make -C TP4/Projet/dijkstra clean all
+make -C TP4/Projet/blowfish clean all
+  \end{verbatim}
+  \item Simulation gem5 en mode SE (CPU OoO) --- Architecture A7 :
+  \begin{verbatim}
+GEM5=/path/to/gem5/build/RISCV/gem5.opt
+"$GEM5" \
+  -d TP4/Projet/q1_m5out/m5out_q1_a7_dijkstra TP4/se_A7.py \
+  --cmd TP4/Projet/dijkstra/dijkstra_large.riscv \
+  --options TP4/Projet/dijkstra/input.dat
+
+"$GEM5" \
+  -d TP4/Projet/q1_m5out/m5out_q1_a7_blowfish TP4/se_A7.py \
+  --cmd TP4/Projet/blowfish/bf.riscv \
+  --options e TP4/Projet/blowfish/input_large.asc \
+  TP4/Projet/q1_m5out/output_q1_a7.enc 0123456789ABCDEF
+  \end{verbatim}
+ 
+  \item Extraction des pourcentages (tableau final Q1) :
+  \item Extraction des compteurs par classe d’instructions depuis \texttt{m5out/stats.txt} (ou script de parsing),
+        puis calcul :
+        \[
+          \%(\text{classe } i) = 100 \times \frac{N_i}{\sum_j N_j}.
+        \]
+\end{itemize}
+
+\paragraph{Résultats.}
+\begin{table}[H]
+\centering
+\caption{Pourcentage d’instructions par classe (gem5) — Dijkstra vs BlowFish (A7 et A15)}
+\label{tab:iclass}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{l *{4}{S}}
+\toprule
+& \multicolumn{2}{c}{\textbf{A7}} & \multicolumn{2}{c}{\textbf{A15}} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+\textbf{Classe} & {\textbf{Dijkstra}} & {\textbf{BlowFish}} & {\textbf{Dijkstra}} & {\textbf{BlowFish}} \\
+\midrule
+Entiers (IntAlu+IntMult+IntDiv) & 68.225357 & 64.424663 & 68.225357 & 64.424663 \\
+Load (MemRead)                  & 22.241504 & 22.855417 & 22.241504 & 22.855417 \\
+Store (MemWrite)                &  9.533089 & 12.719215 &  9.533089 & 12.719215 \\
+Contrôle (branch/jump)          &  0.000000 &  0.000000 &  0.000000 &  0.000000 \\
+Flottants (Float*)              &  0.000006 &  0.000091 &  0.000006 &  0.000091 \\
+Autres (No\_OpClass, etc.)      &  0.000045 &  0.000614 &  0.000045 &  0.000614 \\
+\midrule
+\textbf{Total}                  & 100.000001 & 100.000000 & 100.000001 & 100.000000 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{itemize}[leftmargin=*, itemsep=0.2em]
+  \item \textbf{Dijkstra :} Majorité d’instructions \textbf{entiers} (\(\sim 68\%\)) + \textbf{mémoire} surtout en lecture (load \(\sim 22\%\), store \(\sim 9{,}5\%\)).
+  \item \textbf{BlowFish :} Entiers dominants (\(\sim 64\%\)) + \textbf{mémoire} plus marquée, avec \textbf{plus d’écritures} (store \(\sim 12{,}7\%\)) et load \(\sim 22{,}9\%\).
+  \item \textbf{Point clé :} Les deux sont dominés par \textbf{entiers + accès mémoire} ; BlowFish met davantage de pression sur la mémoire (stores).
+\end{itemize}
+
+

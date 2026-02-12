@@ -1,0 +1,146 @@
+\documentclass[11pt,a4paper]{article}
+
+% ----------------------------------------------------
+% PACKAGES ESSENTIELS
+% ----------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{physics}
+\usepackage{titlesec}
+\usepackage[strict]{changepage}
+\usepackage{framed}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\sisetup{round-mode=places, round-precision=6}
+
+% ----------------------------------------------------
+% PARAMÈTRES DE MISE EN PAGE
+% ----------------------------------------------------
+\geometry{margin=2.5cm}
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+% ----------------------------------------------------
+% COULEURS ENSTA
+% ----------------------------------------------------
+\definecolor{enstaBleuFonce}{HTML}{003366}
+\definecolor{enstaBleuClair}{HTML}{0073CF}
+\definecolor{formalshade}{rgb}{0.95,0.95,1}
+
+% ----------------------------------------------------
+% HYPERREF
+% ----------------------------------------------------
+\hypersetup{
+    colorlinks=true,
+    linkcolor=enstaBleuFonce,
+    urlcolor=blue,
+    citecolor=gray
+}
+
+% ----------------------------------------------------
+% STYLE DES SECTIONS
+% ----------------------------------------------------
+\titleformat{\section}[block]
+  {\normalfont\Large\bfseries\color{enstaBleuFonce}}
+  {\thesection}{1em}{}
+  [\vspace{0.3em}\titlerule\color{enstaBleuFonce}\vspace{0.3em}]
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{enstaBleuClair}}
+  {\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries\color{black!70}}
+  {\thesubsubsection}{1em}{}
+
+% ----------------------------------------------------
+% EN-TÊTES ET PIEDS DE PAGE
+% ----------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{ENSTA Paris}
+\fancyhead[R]{ECE\_4ES01\_TA / TP4 : Microprocesseur superscalaire \& mémoires caches}
+\fancyfoot[C]{\thepage}
+
+% ----------------------------------------------------
+% ENVIRONNEMENT FORMAL (ENCADRÉ)
+% ----------------------------------------------------
+\newenvironment{formal}{%
+\def\FrameCommand{%
+  \hspace{1pt}%
+  {\color{enstaBleuFonce}\vrule width 2pt}%
+  {\color{formalshade}\vrule width 4pt}%
+  \colorbox{formalshade}%
+}%
+\MakeFramed{\advance\hsize-\width\FrameRestore}%
+\noindent\hspace{-4.55pt}%
+\begin{adjustwidth}{}{7pt}%
+\vspace{4pt}%
+}{%
+\vspace{4pt}\end{adjustwidth}\endMakeFramed%
+}
+
+% ----------------------------------------------------
+% DÉBUT DU DOCUMENT
+% ----------------------------------------------------
+\begin{document}
+
+% ====================================================
+% PAGE DE COUVERTURE
+% ====================================================
+\begin{titlepage}
+    \centering
+    \vspace*{3.5cm}
+
+    \includegraphics[width=0.55\textwidth]{imgs/logo_ensta_2025.png}
+
+    {\Large Architecture des microprocesseurs (ECE\_4ES01\_TA) \par}
+    \vspace{0.2cm}
+    {\huge\bfseries TD/TP4 : Analyse de configurations d’architectures \par}
+    \vspace{0.2cm}
+    {\Large Microprocesseur superscalaire / mémoires caches \par}
+
+    \vspace{2.5cm}
+
+    % ====== AUTEURS (4) ======
+    {\Large \textbf{Auteurs (quadrinôme)}\par}
+    \vspace{0.4cm}
+    {\Large CHACÓN GÓMEZ José Daniel \par}
+    {\Large NOM Prénom 2 \par}
+    {\Large NOM Prénom 3 \par}
+    {\Large NOM Prénom 4 \par}
+
+    \vspace{1.5cm}
+    \textbf{Encadrant / Chargé de TD :} \underline{\hspace{6cm}} \par
+
+    \vfill
+    École Nationale des Techniques Avancées (ENSTA Paris)\\
+    Février 2026 \par
+\end{titlepage}
+
+% ====================================================
+% TABLE DES MATIÈRES
+% ====================================================
+\newpage
+\tableofcontents
+\newpage
+
+% ====================================================
+% CONTENU MODULAIRE
+% ====================================================
+\input{sections/introduction}
+\input{sections/exercice3/exercice3}
+\input{sections/exercice4/exercice4}
+
+\end{document}

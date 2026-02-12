@@ -1,0 +1,16 @@
+\subsubsection{Q2 — Catégorie d’instructions à optimiser}
+
+\begin{formal}
+\textbf{Énoncé (Q2).}
+Quelle catégorie d'instructions nécessiterait une amélioration de performances ?
+Expliquez en quelques lignes (max 5 lignes).
+\end{formal}
+
+\paragraph{Réponse.}
+Même si les instructions \textbf{entières} dominent (\(\sim 64\text{--}68\%\)), une part très importante provient des \textbf{accès mémoire} (loads+stores \(\approx 32\text{--}36\%\)).
+La catégorie à optimiser en priorité est donc \textbf{Load/Store}, car elle dépend fortement de la \textbf{latence} et du \textbf{débit} des caches/RAM.
+\textbf{BlowFish} effectue davantage de \textbf{stores} (\(\sim 12{,}7\%\) vs \(\sim 9{,}5\%\)), ce qui accentue la pression sur la hiérarchie mémoire ; améliorer cache/bande passante/préfetch est le levier le plus rentable.
+
+% ====================================================
+% 2. ÉVALUATION DES PERFORMANCES
+% ====================================================

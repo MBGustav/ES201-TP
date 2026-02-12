@@ -1,0 +1,102 @@
+\subsubsection{Q5 — Cortex A15 : impact de la taille de L1 (L1I = L1D)}
+
+\begin{formal}
+\textbf{Énoncé (Q5).}
+Générez les figures de performances détaillées (performance générale, IPC, hiérarchie mémoire,
+prédiction de branchement, etc.) en fonction de la taille du cache L1 pour les configurations testées.
+Analysez les résultats. Quelle configuration de L1 donne les meilleures performances pour le Cortex A15
+pour \texttt{dijkstra} ? et pour \texttt{BlowFish} ?
+\newline\textbf{N.B. : Mentionnez les paramètres d’exécution de Gem5 que vous avez utilisé.}
+\end{formal}
+
+\paragraph{Paramètres d’exécution (gem5).}
+\begin{itemize}[leftmargin=*, itemsep=0.2em]
+  \item Gem5 (mode SE, ISA RISC-V) : \texttt{build/RISCV/gem5.opt}
+  \item Script de configuration : \texttt{TP4/se\_A15.py} (CPU OoO)
+  \item Paramètres CLI utilisés : \texttt{-d <outdir>}, \texttt{--cmd <binary>}, \texttt{--options <args>},
+        \texttt{--l1i-size <NkB>}, \texttt{--l1d-size <NkB>}
+  \item Balayage : \texttt{--l1i-size = --l1d-size} $\in \{2,4,8,16,32\}\,\text{kB}$
+  \item L2 fixé à 512kB dans le script.
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Q5 (Cortex A15) — \texttt{dijkstra\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}
+\label{tab:q5_a15_dijkstra}
+\scriptsize
+\setlength{\tabcolsep}{4.5pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular}{c c c c c c c c}
+\toprule
+\textbf{L1 (kB)} & \textbf{IPC} & \textbf{CPI} & \textbf{Cycles (M)} &
+\textbf{I\$ miss} & \textbf{D\$ miss} & \textbf{L2 miss} & \textbf{Mispred} \\
+\midrule
+ 2  & 0.654236 & 1.528500 & 311.682 & 0.052157 & 0.185632 & 0.000220 & 0.011167 \\
+ 4  & 0.716546 & 1.395584 & 284.579 & 0.026767 & 0.143118 & 0.000290 & 0.011140 \\
+ 8  & 0.901382 & 1.109407 & 226.223 & 0.005627 & 0.077506 & 0.000574 & 0.011522 \\
+ 16 & 0.981770 & 1.018568 & 207.700 & 0.002244 & 0.051970 & 0.000871 & 0.011546 \\
+ 32 & 1.141754 & 0.875845 & 178.597 & 0.001183 & 0.017590 & 0.002893 & 0.011588 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Q5 (Cortex A15) — \texttt{blowfish\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}
+\label{tab:q5_a15_blowfish}
+\scriptsize
+\setlength{\tabcolsep}{4.5pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular}{c c c c c c c c}
+\toprule
+\textbf{L1 (kB)} & \textbf{IPC} & \textbf{CPI} & \textbf{Cycles (M)} &
+\textbf{I\$ miss} & \textbf{D\$ miss} & \textbf{L2 miss} & \textbf{Mispred} \\
+\midrule
+ 2  & 1.060149 & 0.943264 & 12.441 & 0.110876 & 0.176653 & 0.002642 & 0.125675 \\
+ 4  & 1.134343 & 0.881568 & 11.627 & 0.019981 & 0.124223 & 0.004438 & 0.124880 \\
+ 8  & 1.359661 & 0.735477 &  9.701 & 0.000680 & 0.034137 & 0.022683 & 0.124722 \\
+ 16 & 1.390119 & 0.719363 &  9.488 & 0.000507 & 0.029321 & 0.030426 & 0.124713 \\
+ 32 & 1.497467 & 0.667794 &  8.808 & 0.000448 & 0.001067 & 0.798194 & 0.124786 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{imgs/plot_q5_a15_dijkstra_large.png}
+\caption{Q5 (A15) — \texttt{dijkstra\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1.}
+\label{fig:q5_a15_dijkstra}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{imgs/plot_q5_a15_blowfish_large.png}
+\caption{Q5 (A15) — \texttt{blowfish\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1.}
+\label{fig:q5_a15_blowfish}
+\end{figure}
+
+\paragraph{Analyse}
+Les résultats des Tables~\ref{tab:q5_a15_dijkstra} et~\ref{tab:q5_a15_blowfish}, confirmés par les Figures~\ref{fig:q5_a15_dijkstra}
+et~\ref{fig:q5_a15_blowfish}, montrent une tendance nette : quand la taille de L1 augmente (\textbf{L1I=L1D}),
+\textbf{I\$ miss} et \textbf{D\$ miss} chutent, ce qui se traduit par \textbf{moins de cycles} et \textbf{un IPC plus élevé}.
+Cela a du sens, car réduire les misses réduit les attentes vers L2/mémoire et donc les \emph{stalls}.
+
+Pour \texttt{dijkstra\_large} (Table~\ref{tab:q5_a15_dijkstra}, Figure~\ref{fig:q5_a15_dijkstra}), l’amélioration est régulière :
+on observe simultanément la baisse des misses (surtout \textbf{D\$}) et la hausse de l’IPC, ce qui indique que l’application
+bénéficie directement d’un meilleur taux de hits en L1.
+
+Pour \texttt{blowfish\_large} (Table~\ref{tab:q5_a15_blowfish}, Figure~\ref{fig:q5_a15_blowfish}), le gain est surtout marqué
+entre {2}{kB} et {8}{kB} : les misses chutent très rapidement et l’IPC augmente fortement, ce qui correspond bien à une charge
+\emph{bouclée} (code répétitif + tables) dont le \emph{working set} tient progressivement en cache.
+Le taux de misprediction reste globalement stable (Figures~\ref{fig:q5_a15_dijkstra} et~\ref{fig:q5_a15_blowfish}),
+donc la performance est principalement pilotée par la hiérarchie mémoire.
+
+\paragraph{Remarque (BlowFish, L1={32}{kB}) : pic de miss L2.}
+Sur la Figure~\ref{fig:q5_a15_blowfish} et la Table~\ref{tab:q5_a15_blowfish}, le \textbf{miss L2} augmente fortement à {32}{kB}.
+D’après \texttt{stats.txt}, cela s’explique surtout par un \textbf{effet de ratio} : seulement \(m 2547\) accès atteignent L2,
+et une grande partie sont des misses, alors même que \(D\$\) miss devient quasi nul (accès majoritairement servis en L1).
+La tendance globale (cycles en baisse, IPC en hausse) confirme que l’effet dominant reste la chute des misses L1.
+
+\paragraph{Meilleure configuration (A15).}
+Sur les points testés, la meilleure performance est obtenue avec \textbf{L1I=L1D={32}{kB}} pour \texttt{dijkstra} et \texttt{BlowFish}
+(min cycles / max IPC).
