@@ -1,0 +1,59 @@
+\subsubsection{Q7 — Surface L1, pourcentage et taille des coeurs}
+
+\begin{formal}
+\textbf{Énoncé (Q7).}
+Quelle est la surface des caches L1 du Tableau 12 (instructions et données) en mm$^2$ ?
+Quel pourcentage de la surface totale des coeurs A7 et A15 est occupé par les caches L1 ?
+En déduire la taille des deux coeurs (hors caches L1). Donnez votre analyse.
+\end{formal}
+
+\paragraph{Méthode.}
+Nous utilisons CACTI à 32 nm (cf. Q6), avec les paramètres L1 du Tableau 12 :
+\begin{itemize}[leftmargin=*, itemsep=0.2em]
+  \item A7 : 32 kB, bloc 32 B, associativité 2
+  \item A15 : 32 kB, bloc 64 B, associativité 2
+\end{itemize}
+Les fichiers \texttt{cache\_L1\_A7\_32nm.cfg} et \texttt{cache\_L1\_A15\_32nm.cfg}
+ont été créés à partir de \texttt{cache.cfg}, en modifiant uniquement les paramètres L1 utiles.
+Pour Q7, on utilise seulement les champs du Tableau 12 suivants : \textbf{I-L1\$} et \textbf{D-L1\$}
+(taille, taille de bloc, associativité).
+
+Dans chaque sortie CACTI, la surface d'un cache L1 est calculée par :
+\[
+S_{L1} = S_{\text{data}} + S_{\text{tag}}
+\]
+Puis :
+\[
+S_{L1,\text{total}} = S_{L1I} + S_{L1D},\quad
+\%L1 = \frac{S_{L1,\text{total}}}{S_{\text{coeur+L1}}}\times 100,\quad
+S_{\text{coeur seul}} = S_{\text{coeur+L1}} - S_{L1,\text{total}}
+\]
+avec \(S_{\text{coeur+L1}}=0.45\) mm$^2$ pour A7 et \(2.0\) mm$^2$ pour A15 (énoncé).
+
+\begin{table}[H]
+\centering
+\caption{Q7 — Résultats de surface (CACTI 32nm)}
+\label{tab:q7_surface}
+\small
+\setlength{\tabcolsep}{4.5pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular}{l c c}
+\toprule
+\textbf{Métrique} & \textbf{A7} & \textbf{A15} \\
+\midrule
+\(S_{\text{data}}\) d'un L1 (mm$^2$) & 0.0301 & 0.0301 \\
+\(S_{\text{tag}}\) d'un L1 (mm$^2$) & 0.0083 & 0.0044 \\
+\(S_{L1I}\) (mm$^2$) & 0.0384 & 0.0346 \\
+\(S_{L1D}\) (mm$^2$) & 0.0384 & 0.0346 \\
+\(S_{L1,\text{total}}\) (mm$^2$) & 0.0769 & 0.0691 \\
+\(\%L1\) de la surface coeur+L1 & 17.08\% & 3.46\% \\
+\(S_{\text{coeur seul}}\) (mm$^2$) & 0.3731 & 1.9309 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Analyse.}
+Les L1 représentent une part nettement plus importante sur A7 (\(\approx 17.1\%\)) que sur A15 (\(\approx 3.46\%\)).
+Autrement dit, la surface ``logique coeur'' (hors L1) est dominante sur A15, ce qui est cohérent avec un coeur plus large
+et plus agressif micro-architecturalement. À paramètres L1 comparables (32 kB, 2-way), la différence principale
+provient ici de la taille de bloc (32 B vs 64 B), qui modifie le coût de la partie tag.

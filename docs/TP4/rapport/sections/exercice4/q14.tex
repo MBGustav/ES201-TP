@@ -1,0 +1,72 @@
+% !TeX root = ../../rapport.tex
+\subsubsection{Q14 (facultatif) --- Approche de specification pour un domaine robotique embarque}
+
+\begin{formal}
+\textbf{Énoncé (Q14).}
+Proposez une approche pour la specification d'une architecture avec plusieurs applications dans un domaine specifique.
+\end{formal}
+
+\paragraph{Domaine vise.}
+Nous nous placons dans le contexte \textbf{robotique embarquee} (robot mobile, drone, bras robotique) : systeme autonome avec capteurs
+(camera, IMU, LiDAR, etc.), boucles de controle temps reel, et traitement local (\emph{edge}) sous contraintes d'energie et de surface.
+
+\paragraph{Contraintes (hypotheses realistes).}
+\begin{itemize}[leftmargin=*, itemsep=0.15em]
+  \item \textbf{Temps reel :} certaines taches (commande moteurs, stabilisation, securite) ont des deadlines et une contrainte de jitter.
+  \item \textbf{Energie/autonomie :} pour un robot mobile/donne sur batterie, minimiser l'energie par tache (ou maximiser IPC/mW) pour preserver l'autonomie.
+  \item \textbf{Thermique :} souvent fanless ; privilegier des gains \emph{soutenables} (eviter une architecture qui throttle rapidement).
+  \item \textbf{Surface/cout :} les caches et les coeurs ``big'' coutent en mm$^2$ (et donc en cout), il faut justifier chaque augmentation.
+  \item \textbf{Memoire :} la DRAM est lente et energivore ; limiter les misses (MPKI) et la bande passante est cle (surtout pour vision/SLAM).
+  \item \textbf{Surete :} degrader gracieusement (toujours garantir le controle/safety), meme si les taches lourdes (perception) saturent.
+\end{itemize}
+
+\paragraph{Ensemble representatif d'applications.}
+Pour specifier une architecture, on choisit un ensemble de cas d'usage du domaine (avec des poids si besoin).
+Exemple typique \textbf{robotique embarquee} :
+\begin{itemize}[leftmargin=*, itemsep=0.15em]
+  \item \textbf{Planification de trajectoire :} \texttt{dijkstra} / A* (graphes, acces memoire moins reguliers).
+  \item \textbf{Perception :} traitement image (feature extraction) ou inference legere (CNN), charge importante et parfois vectorisable.
+  \item \textbf{Localisation/SLAM :} estimation d'etat (EKF/graph-SLAM), souvent plus flottant et sensible a la memoire.
+  \item \textbf{Controle :} boucles PID/commande moteurs, charge faible mais deadlines strictes.
+  \item \textbf{Communication securisee :} \texttt{blowfish} (chiffrement symetrique, entiers + memoire).
+\end{itemize}
+
+\paragraph{Caracterisation des applications (ce qu'il faut mesurer).}
+L'idee est d'identifier \emph{le goulot d'etranglement} de chaque application :
+\begin{itemize}[leftmargin=*, itemsep=0.15em]
+  \item \textbf{Mix d'instructions :} p. ex. Table~\ref{tab:iclass} montre que \texttt{dijkstra} et \texttt{blowfish} sont majoritairement
+        \textbf{entiers} ($\sim$64--68\%) et \textbf{memoire} (loads+stores $\sim$32\%). En robotique, il faut aussi identifier les taches plus
+        \textbf{flottantes/vectorielles} (vision, SLAM), potentiellement candidates a DSP/SIMD/NPU.
+  \item \textbf{Intensite memoire :} MPKI L1/L2, taux de misses, bande passante ; distingue ``memory-bound'' vs ``compute-bound''.
+  \item \textbf{Sensibilite a la taille de cache :} faire varier L1 (comme en Q4--Q5) et observer le point ou les gains deviennent marginaux.
+        Dans nos resultats, \texttt{blowfish} sature vite (plateau), alors que \texttt{dijkstra} profite davantage d'une L1 plus grande.
+  \item \textbf{Contraintes temps reel :} latence \emph{pire-cas} et jitter pour les boucles de controle/safety (a garantir meme sous charge).
+\end{itemize}
+
+\paragraph{Metrices et objectif d'optimisation.}
+En robotique embarquee, on cherche rarement le maximum de performance brute ; on optimise plutot un compromis sous contraintes temps reel :
+\begin{itemize}[leftmargin=*, itemsep=0.15em]
+  \item \textbf{Contraintes ``dures'' :} deadlines/jitter pour controle et safety (verification sur le pire-cas).
+  \item \textbf{Objectif ``souple'' :} maximiser un score ponderé (perf/W, perf/mm$^2$) pour perception/planification.
+  \item Concretement : utiliser les metriques de Q9 (IPC/mm$^2$) et Q11 (IPC/mW), et conserver des configurations proches du front de Pareto.
+\end{itemize}
+
+\paragraph{Espace de conception (parametres a explorer).}
+\begin{itemize}[leftmargin=*, itemsep=0.15em]
+  \item \textbf{Heterogeneite :} big.LITTLE (un coeur ``big'' pour perception/planification + un coeur ``little'' pour controle/safety et l'energie).
+  \item \textbf{Caches :} tailles L1I/L1D, associativite, taille de bloc ; L2 (souvent partagee) et sa taille.
+  \item \textbf{Frequences/DVFS :} points de fonctionnement (basse/moyenne/haute) et politique de migration des taches.
+\end{itemize}
+
+\paragraph{Decision finale (exemple de methode).}
+\begin{enumerate}[leftmargin=*, itemsep=0.2em]
+  \item Explorer quelques tailles L1 par coeur et mesurer l'IPC (gem5), puis estimer surface/energie (CACTI + modele simple).
+  \item Retenir les configurations non-dominees (Pareto) et choisir un point qui respecte les contraintes (latence/energie/surface).
+  \item Specifier aussi \textbf{le mapping} : reserver le coeur ``little'' aux taches temps reel (controle/safety) pour limiter l'interference,
+        et executer perception/planification sur le coeur ``big'' (et/ou accelerateurs) selon les besoins de performance.
+\end{enumerate}
+
+\paragraph{Resultat attendu.}
+Au final, la specification n'est pas seulement une taille de cache : c'est une \emph{architecture + politique d'utilisation}
+(type de coeurs, caches, frequences, et regles d'ordonnancement) justifiee par des mesures de performance, d'energie et de surface
+sur un ensemble d'applications representatif du domaine.

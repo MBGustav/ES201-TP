@@ -1,0 +1,20 @@
+% !TeX root = ../../rapport.tex
+\subsubsection{Q10 --- Puissance consommee a la frequence maximale}
+
+\begin{formal}
+\textbf{Énoncé (Q10).}
+Quelle puissance en mW consomme chaque processeur a la frequence maximale ?
+\end{formal}
+
+\paragraph{Réponse.}
+Les donnees du sujet indiquent une consommation de 0.10 mW/MHz (A7) et 0.20 mW/MHz (A15),
+avec des frequences maximales de 1.0 GHz (A7) et 2.5 GHz (A15).
+On convertit en MHz (1.0 GHz = 1000 MHz, 2.5 GHz = 2500 MHz) puis :
+\[
+P = \text{(mW/MHz)} \times f_{\max}(\text{MHz})
+\]
+
+\begin{itemize}[leftmargin=*, itemsep=0.2em]
+  \item A7 : $0.10 \times 1000 = 100$ mW
+  \item A15 : $0.20 \times 2500 = 500$ mW
+\end{itemize}

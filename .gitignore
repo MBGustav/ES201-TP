@@ -25,3 +25,5 @@ output*
 *.tmp
 *~
 .core
+
+__pycache__/

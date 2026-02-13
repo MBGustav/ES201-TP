@@ -25,6 +25,14 @@
 \sisetup{round-mode=places, round-precision=6}
 
 % ----------------------------------------------------
+% PATHS (allows compiling from repo root or this folder)
+% ----------------------------------------------------
+\makeatletter
+\def\input@path{{./}{docs/TP4/rapport/}}
+\makeatother
+\graphicspath{{imgs/}{docs/TP4/rapport/imgs/}}
+
+% ----------------------------------------------------
 % PARAMÈTRES DE MISE EN PAGE
 % ----------------------------------------------------
 \geometry{margin=2.5cm}
@@ -103,7 +111,7 @@
     \centering
     \vspace*{3.5cm}
 
-    \includegraphics[width=0.55\textwidth]{imgs/logo_ensta_2025.png}
+    \includegraphics[width=0.55\textwidth]{logo_ensta_2025.png}
 
     {\Large Architecture des microprocesseurs (ECE\_4ES01\_TA) \par}
     \vspace{0.2cm}
@@ -122,7 +130,8 @@
     {\Large NOM Prénom 4 \par}
 
     \vspace{1.5cm}
-    \textbf{Encadrant / Chargé de TD :} \underline{\hspace{6cm}} \par
+    \textbf{Encadrant / Chargé de TD :} SIDEM Antoine \par
+    \textbf{Responsable de la matière :} HAMMAMI Omar \par
 
     \vfill
     École Nationale des Techniques Avancées (ENSTA Paris)\\

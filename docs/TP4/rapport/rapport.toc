@@ -23,3 +23,39 @@
 \contentsline {paragraph}{Analyse}{8}{paragraph*.18}%
 \contentsline {paragraph}{Remarque (BlowFish, L1={32}{kB}) : pic de miss L2.}{8}{paragraph*.19}%
 \contentsline {paragraph}{Meilleure configuration (A15).}{8}{paragraph*.20}%
+\contentsline {subsection}{\numberline {3.3}3. Efficacité surfacique}{8}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Q6 — Paramètres par défaut dans \texttt {cache.cfg}}{9}{subsubsection.3.3.1}%
+\contentsline {paragraph}{Réponse.}{9}{paragraph*.21}%
+\contentsline {paragraph}{Remarque (technologie).}{9}{paragraph*.22}%
+\contentsline {subsubsection}{\numberline {3.3.2}Q7 — Surface L1, pourcentage et taille des coeurs}{9}{subsubsection.3.3.2}%
+\contentsline {paragraph}{Méthode.}{9}{paragraph*.23}%
+\contentsline {paragraph}{Analyse.}{10}{paragraph*.25}%
+\contentsline {subsubsection}{\numberline {3.3.3}Q8 --- Variation de la taille L1 et nouvelle surface totale}{10}{subsubsection.3.3.3}%
+\contentsline {paragraph}{Méthode.}{10}{paragraph*.26}%
+\contentsline {paragraph}{Analyse.}{12}{paragraph*.31}%
+\contentsline {subsubsection}{\numberline {3.3.4}Q9 --- Efficacite surfacique (IPC / mm$^2$) selon la taille de L1}{12}{subsubsection.3.3.4}%
+\contentsline {paragraph}{Méthode.}{12}{paragraph*.32}%
+\contentsline {paragraph}{Analyse.}{13}{paragraph*.36}%
+\contentsline {subsection}{\numberline {3.4}4. Efficacité énergétique}{13}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Q10 --- Puissance consommee a la frequence maximale}{13}{subsubsection.3.4.1}%
+\contentsline {paragraph}{Réponse.}{13}{paragraph*.37}%
+\contentsline {subsubsection}{\numberline {3.4.2}Q11 --- Efficacite energetique (IPC / mW) selon la taille de L1}{14}{subsubsection.3.4.2}%
+\contentsline {paragraph}{Méthode.}{14}{paragraph*.38}%
+\contentsline {paragraph}{Analyse.}{15}{paragraph*.42}%
+\contentsline {subsection}{\numberline {3.5}5. Architecture système big.LITTLE}{15}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Q12 --- Choix de la configuration L1 pour un systeme big.LITTLE}{15}{subsubsection.3.5.1}%
+\contentsline {paragraph}{Proposition (par application).}{15}{paragraph*.43}%
+\contentsline {subsection}{\numberline {3.6}6. Facultatif}{15}{subsection.3.6}%
+\contentsline {subsubsection}{\numberline {3.6.1}Q13 (facultatif) --- Equivalence des choix et compromis}{15}{subsubsection.3.6.1}%
+\contentsline {paragraph}{Compromis retenu.}{15}{paragraph*.44}%
+\contentsline {paragraph}{Justification (energie/performance).}{16}{paragraph*.45}%
+\contentsline {paragraph}{Justification (surface).}{16}{paragraph*.46}%
+\contentsline {subsubsection}{\numberline {3.6.2}Q14 (facultatif) --- Approche de specification pour un domaine robotique embarque}{16}{subsubsection.3.6.2}%
+\contentsline {paragraph}{Domaine vise.}{16}{paragraph*.47}%
+\contentsline {paragraph}{Contraintes (hypotheses realistes).}{16}{paragraph*.48}%
+\contentsline {paragraph}{Ensemble representatif d'applications.}{16}{paragraph*.49}%
+\contentsline {paragraph}{Caracterisation des applications (ce qu'il faut mesurer).}{17}{paragraph*.50}%
+\contentsline {paragraph}{Metrices et objectif d'optimisation.}{17}{paragraph*.51}%
+\contentsline {paragraph}{Espace de conception (parametres a explorer).}{17}{paragraph*.52}%
+\contentsline {paragraph}{Decision finale (exemple de methode).}{17}{paragraph*.53}%
+\contentsline {paragraph}{Resultat attendu.}{17}{paragraph*.54}%

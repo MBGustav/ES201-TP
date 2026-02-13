@@ -20,9 +20,13 @@ else
 endif
 
 #CXXFLAGS = -Wall -Wno-unknown-pragmas -Winline $(DBG) $(OPT) 
-CXXFLAGS = -Wno-unknown-pragmas $(DBG) $(OPT) 
-CXX = g++ -m32
-CC  = gcc -m32
+CXXFLAGS = -Wno-unknown-pragmas $(DBG) $(OPT)
+# Old CACTI makefiles often force 32-bit builds (-m32). That fails on machines
+# without 32-bit libstdc++ headers installed. Build native by default, and
+# allow overriding via `make ARCH=-m32` if really needed.
+ARCH ?=
+CXX = g++ $(ARCH)
+CC  = gcc $(ARCH)
 
 SRCS  = area.cc bank.cc mat.cc main.cc Ucache.cc io.cc technology.cc basic_circuit.cc parameter.cc \
 		decoder.cc component.cc uca.cc subarray.cc wire.cc htree2.cc \
@@ -47,5 +51,4 @@ obj_$(TAG)/%.o : %.cc
 
 clean:
 	-rm -f *.o _cacti.so cacti.py $(TARGET)
-
 

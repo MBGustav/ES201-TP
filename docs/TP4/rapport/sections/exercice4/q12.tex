@@ -1,0 +1,33 @@
+% !TeX root = ../../rapport.tex
+\subsubsection{Q12 --- Choix de la configuration L1 pour un systeme big.LITTLE}
+
+\begin{formal}
+\textbf{Énoncé (Q12).}
+Avec un esprit de concepteur de systeme, et en se basant sur les resultats de Q10 et Q11,
+proposez la meilleure configuration du cache L1 du processeur big.LITTLE pour les applications
+\texttt{dijkstra} et \texttt{blowfish} individuellement.
+\end{formal}
+
+\paragraph{Proposition (par application).}
+Les gains en \% ci-dessous sont des gains relatifs d'efficacite energetique (IPC/mW) entre deux tailles L1 comparees.
+\begin{itemize}[leftmargin=*, itemsep=0.25em]
+  \item \textbf{Application \texttt{dijkstra}} :
+        \begin{itemize}[leftmargin=*, itemsep=0.15em]
+          \item A7 : \textbf{16 kB} (meilleur IPC/mW sur les points testes, Table~\ref{tab:q11_a7}).
+                Entre 4 kB $\rightarrow$ 8 kB, l'efficacite energetique augmente d'environ +8.6\%, alors que
+                8 kB $\rightarrow$ 16 kB n'apporte qu'environ +2.7\% : le gain devient donc nettement plus marginal.
+          \item A15 : \textbf{32 kB} (meilleur IPC/mW, Table~\ref{tab:q11_a15}).
+                On observe encore des gains importants dans la zone haute : +8.9\% entre 8 kB $\rightarrow$ 16 kB,
+                puis +16.3\% entre 16 kB $\rightarrow$ 32 kB, ce qui justifie de pousser jusqu'a 32 kB pour cette application.
+        \end{itemize}
+
+  \item \textbf{Application \texttt{blowfish}} :
+        \begin{itemize}[leftmargin=*, itemsep=0.15em]
+          \item A7 : \textbf{8 kB} (Table~\ref{tab:q11_a7}).
+                Le saut 4 kB $\rightarrow$ 8 kB est d'environ +9.8\% d'IPC/mW, tandis que 8 kB $\rightarrow$ 16 kB
+                n'apporte qu'environ +0.5\% : la courbe est presque en plateau a partir de 8 kB.
+          \item A15 : \textbf{32 kB} (meilleur IPC/mW, Table~\ref{tab:q11_a15}).
+                Entre 8 kB $\rightarrow$ 16 kB, le gain est faible (+2.2\%), mais 16 kB $\rightarrow$ 32 kB apporte encore
+                environ +7.7\%, donc 32 kB reste le meilleur point mesure.
+        \end{itemize}
+\end{itemize}
