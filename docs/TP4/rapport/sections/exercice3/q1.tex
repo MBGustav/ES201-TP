@@ -1,2 +1,63 @@
-\subsubsection{Q1}
-Contenu de l'Exercice 3 -- Q1 a completer.
+\subsubsection{Question 1 - Configuration de cache}
+
+\begin{formal}
+\textbf{Énoncé (Q1).}
+Déterminez, pour chacune des deux configurations de mémoires cache, les
+paramètres de configuration des caches à utiliser dans gem5 et complétez la Table~\ref{tab:cache_conf}.
+\end{formal}
+Dans cette question, nous allons comparer les performances de deux configurations de cache différentes, C1 et C2. Les caractéristiques de chaque configuration sont présentées dans le tableau ci-dessous.
+
+
+\begin{lstlisting}[language=Python, caption=Extrait du fichier \texttt{se\_cache.py}, label={lst:cache_conf}]
+
+def apply_cache_conf(args, system):
+    """
+    Cree I$, D$, L2 selon C1/C2 ou selon parametres custom.
+    """
+    system.cache_line_size = args.line_size
+
+    # Selection config
+
+    if args.conf == "C1":
+        l1i_size, l1i_assoc = "4kB", 1
+        l1d_size, l1d_assoc = "4kB", 1
+        l2_size,  l2_assoc  = "32kB", 1
+    elif args.conf == "C2":
+        l1i_size, l1i_assoc = "4kB", 1
+        l1d_size, l1d_assoc = "4kB", 2
+        l2_size,  l2_assoc  = "32kB", 4
+    
+    # L1
+    system.cpu.icache = L1ICache()
+    system.cpu.dcache = L1DCache()
+    system.cpu.icache.size = l1i_size
+    system.cpu.icache.assoc = l1i_assoc
+    system.cpu.dcache.size = l1d_size
+    system.cpu.dcache.assoc = l1d_assoc
+    
+    # L2
+    system.l2cache = L2Cache()
+    #(...)
+    # Mem bus
+    system.membus = SystemXBar()
+    #(...)
+
+\end{lstlisting}
+
+Dans le extrait presenté dans le Listing~\ref{lst:cache_conf}, nous pouvons voir les configurations de cache C1 et C2 qui sont appliquées. Il faut considerer que la configuration C1 correspond à une architecture de cache plus simple, tandis que la configuration C2 apresente une diference à ce qui concerne a une associativité pour le cache de données (DL2) et le cache de niveau 2 (UL2).
+
+
+
+\begin{table}[htp]
+
+    \centering
+    \begin{tabular}{|c|ccc}
+        Configuration & IL1 & DL2 & UL2 \\\hline\hline
+        
+        C1 & size=4kB, assoc=1 & size=4kB, assoc=1 & size=32kB, assoc=1 \\
+        C2 & size=4kB, assoc=1 & size=4kB, assoc=1 & size=32kB, assoc=4 \\    
+    \end{tabular}
+    \caption{Parametres de cache pour les configurations C1 et C2}
+
+\end{table}
+

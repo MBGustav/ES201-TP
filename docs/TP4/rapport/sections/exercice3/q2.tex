@@ -1,2 +1,52 @@
-\subsubsection{Q2}
-Contenu de l'Exercice 3 -- Q2 a completer.
+\subsubsection{Question 2 - Comparaison de perrformances}
+
+\begin{formal}
+\textbf{Énoncé (Q2).}
+Complétez les tableaux 9, 10 et 11. Pour cela vous devez simuler les différentes configurations et collecter les informations necessaires pour IMR, DMR et UCR.
+\end{formal}
+
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{lcc}
+        Programme & Conf. Cache - C1 & Conf. Cache - C2 \\\hline\hline
+        P1(normale) & 0.000119 & 0.000119  \\
+        P2(pointer) & 0.000089 & 0.000089 \\
+        P3(tempo) & 0.000123 & 0.000123 \\
+        P4(unrol) & 0.000141 & 0.000141 \\
+    \end{tabular}
+    \caption{Resultats de Instructions Miss Rate (IMR)}
+    \label{tab:IMR}
+    
+\end{table}
+
+Dans la Table~\ref{tab:IMR}, nous pouvons observer que les taux de miss pour les instructions (IMR) sont identiques pour les deux configurations de cache, C1 et C2. Cela suggère que les modifications apportées à la configuration de cache n'ont pas eu d'impact significatif sur le taux de miss pour les instructions. 
+
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{lcc}
+        Programme & Conf. Cache - C1 & Conf. Cache - C2 \\\hline\hline
+        P1(normale) & 0.298317 & 0.306918 \\
+        P2(pointer) & 0.299730 & 0.308453 \\
+        P3(tempo)   & 0.299726 & 0.308447 \\
+        P4(unrol)   & 0.300091 & 0.305469 \\
+    \end{tabular}
+    \caption{Resultats de Data Cache Miss Rate (DMR)}
+\end{table}
+
+En ce qui concerne les taux de miss pour les données (DMR), nous pouvons observer une valeur pareille dans la configuration C2 par rapport à la configuration C1. Cela demontre que l'augmentation de l'associativité du cache de données (DL2) et du cache de niveau 2 (UL2) dans la configuration C2 n'a pas eu d'impact significatif sur le taux de miss pour les données.
+
+\begin{table}[htp]
+    \centering
+    \begin{tabular}{lcc}
+        Programme & Conf. Cache - C1 & Conf. Cache - C2 \\\hline\hline
+        P1(normale) & 0.437203 & 0.423355 \\
+        P2(pointer) & 0.437227 & 0.423262 \\
+        P3(tempo)   & 0.437230 & 0.423259 \\
+        P4(unrol)   & 0.434496 & 0.425145 \\
+    \end{tabular}
+    \caption{Resultats de Unified Cache Rate (UCR)}
+\end{table}
+
+En ce qui concerne les taux de miss pour le cache unifié (UCR), nous pouvons observer une légère amélioration dans la configuration C2 par rapport à la configuration C1. Cela suggère que l'augmentation de l'associativité du cache de données (DL2) et du cache de niveau 2 (UL2) dans la configuration C2 a eu un impact positif sur le taux de miss pour le cache unifié, bien que l'amélioration soit relativement modeste.
+
+
