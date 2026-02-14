@@ -2,60 +2,60 @@
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
 \contentsline {section}{\numberline {2}Exercice 3 --- A completer}{2}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Questions}{2}{subsection.2.1}%
-\contentsline {subsubsection}{\numberline {2.1.1}Q1}{2}{subsubsection.2.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.2}Q2}{2}{subsubsection.2.1.2}%
-\contentsline {subsubsection}{\numberline {2.1.3}Qi}{2}{subsubsection.2.1.3}%
-\contentsline {section}{\numberline {3}Exercice 4 --- Architecture big.LITTLE : Dijkstra \& BlowFish}{2}{section.3}%
-\contentsline {subsection}{\numberline {3.1}1. Profiling de l'application}{2}{subsection.3.1}%
-\contentsline {subsubsection}{\numberline {3.1.1}Q1 — Pourcentage par classe d’instructions}{2}{subsubsection.3.1.1}%
-\contentsline {paragraph}{Objectif.}{2}{paragraph*.1}%
-\contentsline {paragraph}{Méthodologie.}{2}{paragraph*.2}%
-\contentsline {paragraph}{Résultats.}{3}{paragraph*.3}%
-\contentsline {subsubsection}{\numberline {3.1.2}Q2 — Catégorie d’instructions à optimiser}{3}{subsubsection.3.1.2}%
-\contentsline {paragraph}{Réponse.}{4}{paragraph*.5}%
-\contentsline {subsection}{\numberline {3.2}2. Evaluation des performances}{4}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Q4 — Cortex A7 : impact de la taille de L1 (L1I = L1D)}{4}{subsubsection.3.2.1}%
-\contentsline {paragraph}{Paramètres d’exécution (gem5).}{4}{paragraph*.6}%
-\contentsline {paragraph}{Analyse}{5}{paragraph*.11}%
-\contentsline {paragraph}{Meilleure configuration (A7).}{6}{paragraph*.12}%
-\contentsline {subsubsection}{\numberline {3.2.2}Q5 — Cortex A15 : impact de la taille de L1 (L1I = L1D)}{6}{subsubsection.3.2.2}%
-\contentsline {paragraph}{Paramètres d’exécution (gem5).}{6}{paragraph*.13}%
-\contentsline {paragraph}{Analyse}{8}{paragraph*.18}%
-\contentsline {paragraph}{Remarque (BlowFish, L1={32}{kB}) : pic de miss L2.}{8}{paragraph*.19}%
-\contentsline {paragraph}{Meilleure configuration (A15).}{8}{paragraph*.20}%
-\contentsline {subsection}{\numberline {3.3}3. Efficacité surfacique}{8}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Q6 — Paramètres par défaut dans \texttt {cache.cfg}}{9}{subsubsection.3.3.1}%
-\contentsline {paragraph}{Réponse.}{9}{paragraph*.21}%
-\contentsline {paragraph}{Remarque (technologie).}{9}{paragraph*.22}%
-\contentsline {subsubsection}{\numberline {3.3.2}Q7 — Surface L1, pourcentage et taille des coeurs}{9}{subsubsection.3.3.2}%
-\contentsline {paragraph}{Méthode.}{9}{paragraph*.23}%
-\contentsline {paragraph}{Analyse.}{10}{paragraph*.25}%
-\contentsline {subsubsection}{\numberline {3.3.3}Q8 --- Variation de la taille L1 et nouvelle surface totale}{10}{subsubsection.3.3.3}%
-\contentsline {paragraph}{Méthode.}{10}{paragraph*.26}%
-\contentsline {paragraph}{Analyse.}{12}{paragraph*.31}%
-\contentsline {subsubsection}{\numberline {3.3.4}Q9 --- Efficacite surfacique (IPC / mm$^2$) selon la taille de L1}{12}{subsubsection.3.3.4}%
-\contentsline {paragraph}{Méthode.}{12}{paragraph*.32}%
-\contentsline {paragraph}{Analyse.}{13}{paragraph*.36}%
-\contentsline {subsection}{\numberline {3.4}4. Efficacité énergétique}{13}{subsection.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.1}Q10 --- Puissance consommee a la frequence maximale}{13}{subsubsection.3.4.1}%
-\contentsline {paragraph}{Réponse.}{13}{paragraph*.37}%
-\contentsline {subsubsection}{\numberline {3.4.2}Q11 --- Efficacite energetique (IPC / mW) selon la taille de L1}{14}{subsubsection.3.4.2}%
-\contentsline {paragraph}{Méthode.}{14}{paragraph*.38}%
-\contentsline {paragraph}{Analyse.}{15}{paragraph*.42}%
-\contentsline {subsection}{\numberline {3.5}5. Architecture système big.LITTLE}{15}{subsection.3.5}%
-\contentsline {subsubsection}{\numberline {3.5.1}Q12 --- Choix de la configuration L1 pour un systeme big.LITTLE}{15}{subsubsection.3.5.1}%
-\contentsline {paragraph}{Proposition (par application).}{15}{paragraph*.43}%
-\contentsline {subsection}{\numberline {3.6}6. Facultatif}{15}{subsection.3.6}%
-\contentsline {subsubsection}{\numberline {3.6.1}Q13 (facultatif) --- Equivalence des choix et compromis}{15}{subsubsection.3.6.1}%
-\contentsline {paragraph}{Compromis retenu.}{15}{paragraph*.44}%
-\contentsline {paragraph}{Justification (energie/performance).}{16}{paragraph*.45}%
-\contentsline {paragraph}{Justification (surface).}{16}{paragraph*.46}%
-\contentsline {subsubsection}{\numberline {3.6.2}Q14 (facultatif) --- Approche de specification pour un domaine robotique embarque}{16}{subsubsection.3.6.2}%
-\contentsline {paragraph}{Domaine vise.}{16}{paragraph*.47}%
-\contentsline {paragraph}{Contraintes (hypotheses realistes).}{16}{paragraph*.48}%
-\contentsline {paragraph}{Ensemble representatif d'applications.}{16}{paragraph*.49}%
-\contentsline {paragraph}{Caracterisation des applications (ce qu'il faut mesurer).}{17}{paragraph*.50}%
-\contentsline {paragraph}{Metrices et objectif d'optimisation.}{17}{paragraph*.51}%
-\contentsline {paragraph}{Espace de conception (parametres a explorer).}{17}{paragraph*.52}%
-\contentsline {paragraph}{Decision finale (exemple de methode).}{17}{paragraph*.53}%
-\contentsline {paragraph}{Resultat attendu.}{17}{paragraph*.54}%
+\contentsline {subsubsection}{\numberline {2.1.1}Q1 - Configuration de cache}{2}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Q2 - Comparaison de performances}{3}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Q3 - Localité de références}{4}{subsubsection.2.1.3}%
+\contentsline {section}{\numberline {3}Exercice 4 --- Architecture big.LITTLE : Dijkstra \& BlowFish}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}1. Profiling de l'application}{4}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Q1 — Pourcentage par classe d’instructions}{4}{subsubsection.3.1.1}%
+\contentsline {paragraph}{Objectif.}{4}{paragraph*.5}%
+\contentsline {paragraph}{Méthodologie.}{4}{paragraph*.6}%
+\contentsline {paragraph}{Résultats.}{5}{paragraph*.7}%
+\contentsline {subsubsection}{\numberline {3.1.2}Q2 — Catégorie d’instructions à optimiser}{5}{subsubsection.3.1.2}%
+\contentsline {paragraph}{Réponse.}{5}{paragraph*.9}%
+\contentsline {subsection}{\numberline {3.2}2. Evaluation des performances}{6}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Q4 — Cortex A7 : impact de la taille de L1 (L1I = L1D)}{6}{subsubsection.3.2.1}%
+\contentsline {paragraph}{Paramètres d’exécution (gem5).}{6}{paragraph*.10}%
+\contentsline {paragraph}{Analyse}{7}{paragraph*.15}%
+\contentsline {paragraph}{Meilleure configuration (A7).}{8}{paragraph*.16}%
+\contentsline {subsubsection}{\numberline {3.2.2}Q5 — Cortex A15 : impact de la taille de L1 (L1I = L1D)}{8}{subsubsection.3.2.2}%
+\contentsline {paragraph}{Paramètres d’exécution (gem5).}{8}{paragraph*.17}%
+\contentsline {paragraph}{Analyse}{10}{paragraph*.22}%
+\contentsline {paragraph}{Remarque (BlowFish, L1={32}{kB}) : pic de miss L2.}{10}{paragraph*.23}%
+\contentsline {paragraph}{Meilleure configuration (A15).}{10}{paragraph*.24}%
+\contentsline {subsection}{\numberline {3.3}3. Efficacité surfacique}{10}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Q6 — Paramètres par défaut dans \texttt {cache.cfg}}{11}{subsubsection.3.3.1}%
+\contentsline {paragraph}{Réponse.}{11}{paragraph*.25}%
+\contentsline {paragraph}{Remarque (technologie).}{11}{paragraph*.26}%
+\contentsline {subsubsection}{\numberline {3.3.2}Q7 — Surface L1, pourcentage et taille des coeurs}{11}{subsubsection.3.3.2}%
+\contentsline {paragraph}{Méthode.}{11}{paragraph*.27}%
+\contentsline {paragraph}{Analyse.}{12}{paragraph*.29}%
+\contentsline {subsubsection}{\numberline {3.3.3}Q8 --- Variation de la taille L1 et nouvelle surface totale}{12}{subsubsection.3.3.3}%
+\contentsline {paragraph}{Méthode.}{12}{paragraph*.30}%
+\contentsline {paragraph}{Analyse.}{14}{paragraph*.35}%
+\contentsline {subsubsection}{\numberline {3.3.4}Q9 --- Efficacite surfacique (IPC / mm$^2$) selon la taille de L1}{14}{subsubsection.3.3.4}%
+\contentsline {paragraph}{Méthode.}{14}{paragraph*.36}%
+\contentsline {paragraph}{Analyse.}{15}{paragraph*.40}%
+\contentsline {subsection}{\numberline {3.4}4. Efficacité énergétique}{15}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Q10 --- Puissance consommee a la frequence maximale}{15}{subsubsection.3.4.1}%
+\contentsline {paragraph}{Réponse.}{15}{paragraph*.41}%
+\contentsline {subsubsection}{\numberline {3.4.2}Q11 --- Efficacite energetique (IPC / mW) selon la taille de L1}{16}{subsubsection.3.4.2}%
+\contentsline {paragraph}{Méthode.}{16}{paragraph*.42}%
+\contentsline {paragraph}{Analyse.}{17}{paragraph*.46}%
+\contentsline {subsection}{\numberline {3.5}5. Architecture système big.LITTLE}{17}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Q12 --- Choix de la configuration L1 pour un systeme big.LITTLE}{17}{subsubsection.3.5.1}%
+\contentsline {paragraph}{Proposition (par application).}{17}{paragraph*.47}%
+\contentsline {subsection}{\numberline {3.6}6. Facultatif}{17}{subsection.3.6}%
+\contentsline {subsubsection}{\numberline {3.6.1}Q13 (facultatif) --- Equivalence des choix et compromis}{17}{subsubsection.3.6.1}%
+\contentsline {paragraph}{Compromis retenu.}{17}{paragraph*.48}%
+\contentsline {paragraph}{Justification (energie/performance).}{18}{paragraph*.49}%
+\contentsline {paragraph}{Justification (surface).}{18}{paragraph*.50}%
+\contentsline {subsubsection}{\numberline {3.6.2}Q14 (facultatif) --- Approche de specification pour un domaine robotique embarque}{18}{subsubsection.3.6.2}%
+\contentsline {paragraph}{Domaine vise.}{18}{paragraph*.51}%
+\contentsline {paragraph}{Contraintes (hypotheses realistes).}{18}{paragraph*.52}%
+\contentsline {paragraph}{Ensemble representatif d'applications.}{18}{paragraph*.53}%
+\contentsline {paragraph}{Caracterisation des applications (ce qu'il faut mesurer).}{19}{paragraph*.54}%
+\contentsline {paragraph}{Metrices et objectif d'optimisation.}{19}{paragraph*.55}%
+\contentsline {paragraph}{Espace de conception (parametres a explorer).}{19}{paragraph*.56}%
+\contentsline {paragraph}{Decision finale (exemple de methode).}{19}{paragraph*.57}%
+\contentsline {paragraph}{Resultat attendu.}{19}{paragraph*.58}%

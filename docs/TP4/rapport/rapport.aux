@@ -12,102 +12,110 @@
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Exercice 3 --- A completer}{2}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Questions}{2}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Q1}{2}{subsubsection.2.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Q2}{2}{subsubsection.2.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}Qi}{2}{subsubsection.2.1.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Exercice 4 --- Architecture big.LITTLE : Dijkstra \& BlowFish}{2}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}1. Profiling de l'application}{2}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Q1 — Pourcentage par classe d’instructions}{2}{subsubsection.3.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Objectif.}{2}{paragraph*.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Méthodologie.}{2}{paragraph*.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Résultats.}{3}{paragraph*.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pourcentage d’instructions par classe (gem5) — Dijkstra vs BlowFish (A7 et A15)}}{3}{table.caption.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Q1 - Configuration de cache}{2}{subsubsection.2.1.1}\protected@file@percent }
+\newlabel{lst:cache_conf}{{1}{2}{Extrait du fichier \texttt {se\_cache.py}}{lstlisting.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces Extrait du fichier \texttt  {se\_cache.py}}}{2}{lstlisting.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Paramètres de cache pour les configurations C1 et C2}}{3}{table.caption.1}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:iclass}{{1}{3}{Pourcentage d’instructions par classe (gem5) — Dijkstra vs BlowFish (A7 et A15)}{table.caption.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Q2 — Catégorie d’instructions à optimiser}{3}{subsubsection.3.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Réponse.}{4}{paragraph*.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}2. Evaluation des performances}{4}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Q4 — Cortex A7 : impact de la taille de L1 (L1I = L1D)}{4}{subsubsection.3.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Paramètres d’exécution (gem5).}{4}{paragraph*.6}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Q4 (Cortex A7) — \texttt  {dijkstra\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}}{4}{table.caption.7}\protected@file@percent }
-\newlabel{tab:q4_a7_dijkstra}{{2}{4}{Q4 (Cortex A7) — \texttt {dijkstra\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}{table.caption.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Q4 (Cortex A7) — \texttt  {blowfish\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}}{4}{table.caption.8}\protected@file@percent }
-\newlabel{tab:q4_a7_blowfish}{{3}{4}{Q4 (Cortex A7) — \texttt {blowfish\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}{table.caption.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Q4 (A7) — \texttt  {dijkstra\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1.}}{5}{figure.caption.9}\protected@file@percent }
-\newlabel{fig:q4_a7_dijkstra}{{1}{5}{Q4 (A7) — \texttt {dijkstra\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1}{figure.caption.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Q4 (A7) — \texttt  {blowfish\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1.}}{5}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:q4_a7_blowfish}{{2}{5}{Q4 (A7) — \texttt {blowfish\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1}{figure.caption.10}{}}
-\@writefile{toc}{\contentsline {paragraph}{Analyse}{5}{paragraph*.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Meilleure configuration (A7).}{6}{paragraph*.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Q5 — Cortex A15 : impact de la taille de L1 (L1I = L1D)}{6}{subsubsection.3.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Paramètres d’exécution (gem5).}{6}{paragraph*.13}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Q5 (Cortex A15) — \texttt  {dijkstra\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}}{6}{table.caption.14}\protected@file@percent }
-\newlabel{tab:q5_a15_dijkstra}{{4}{6}{Q5 (Cortex A15) — \texttt {dijkstra\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}{table.caption.14}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Q5 (Cortex A15) — \texttt  {blowfish\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}}{7}{table.caption.15}\protected@file@percent }
-\newlabel{tab:q5_a15_blowfish}{{5}{7}{Q5 (Cortex A15) — \texttt {blowfish\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}{table.caption.15}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Q5 (A15) — \texttt  {dijkstra\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1.}}{7}{figure.caption.16}\protected@file@percent }
-\newlabel{fig:q5_a15_dijkstra}{{3}{7}{Q5 (A15) — \texttt {dijkstra\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1}{figure.caption.16}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Q5 (A15) — \texttt  {blowfish\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1.}}{8}{figure.caption.17}\protected@file@percent }
-\newlabel{fig:q5_a15_blowfish}{{4}{8}{Q5 (A15) — \texttt {blowfish\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1}{figure.caption.17}{}}
-\@writefile{toc}{\contentsline {paragraph}{Analyse}{8}{paragraph*.18}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Remarque (BlowFish, L1={32}{kB}) : pic de miss L2.}{8}{paragraph*.19}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Meilleure configuration (A15).}{8}{paragraph*.20}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}3. Efficacité surfacique}{8}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Q6 — Paramètres par défaut dans \texttt  {cache.cfg}}{9}{subsubsection.3.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Réponse.}{9}{paragraph*.21}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Remarque (technologie).}{9}{paragraph*.22}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Q7 — Surface L1, pourcentage et taille des coeurs}{9}{subsubsection.3.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Méthode.}{9}{paragraph*.23}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Q7 — Résultats de surface (CACTI 32nm)}}{10}{table.caption.24}\protected@file@percent }
-\newlabel{tab:q7_surface}{{6}{10}{Q7 — Résultats de surface (CACTI 32nm)}{table.caption.24}{}}
-\@writefile{toc}{\contentsline {paragraph}{Analyse.}{10}{paragraph*.25}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}Q8 --- Variation de la taille L1 et nouvelle surface totale}{10}{subsubsection.3.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Méthode.}{10}{paragraph*.26}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Q8 --- A7 : surface L1 totale et surface totale (coeur + L1 + L2)}}{10}{table.caption.27}\protected@file@percent }
-\newlabel{tab:q8_a7}{{7}{10}{Q8 --- A7 : surface L1 totale et surface totale (coeur + L1 + L2)}{table.caption.27}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Q8 --- A15 : surface L1 totale et surface totale (coeur + L1 + L2)}}{11}{table.caption.28}\protected@file@percent }
-\newlabel{tab:q8_a15}{{8}{11}{Q8 --- A15 : surface L1 totale et surface totale (coeur + L1 + L2)}{table.caption.28}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Q8 --- Surface L1 totale en fonction de la taille L1 (A7 et A15), en valeurs absolues (mm$^2$), pas en pourcentage.}}{11}{figure.caption.29}\protected@file@percent }
-\newlabel{fig:q8_l1_area}{{5}{11}{Q8 --- Surface L1 totale en fonction de la taille L1 (A7 et A15), en valeurs absolues (mm$^2$), pas en pourcentage}{figure.caption.29}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Q8 --- Surface totale en fonction de la taille L1 (gauche) et variation de surface par rapport a la plus petite L1 testée (droite).}}{11}{figure.caption.30}\protected@file@percent }
-\newlabel{fig:q8_total_area}{{6}{11}{Q8 --- Surface totale en fonction de la taille L1 (gauche) et variation de surface par rapport a la plus petite L1 testée (droite)}{figure.caption.30}{}}
-\@writefile{toc}{\contentsline {paragraph}{Analyse.}{12}{paragraph*.31}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.4}Q9 --- Efficacite surfacique (IPC / mm$^2$) selon la taille de L1}{12}{subsubsection.3.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Méthode.}{12}{paragraph*.32}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Q9 --- A7 : efficacite surfacique (IPC / mm$^2$) selon L1}}{12}{table.caption.33}\protected@file@percent }
-\newlabel{tab:q9_a7}{{9}{12}{Q9 --- A7 : efficacite surfacique (IPC / mm$^2$) selon L1}{table.caption.33}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Q9 --- A15 : efficacite surfacique (IPC / mm$^2$) selon L1}}{12}{table.caption.34}\protected@file@percent }
-\newlabel{tab:q9_a15}{{10}{12}{Q9 --- A15 : efficacite surfacique (IPC / mm$^2$) selon L1}{table.caption.34}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Q9 --- Efficacite surfacique (IPC / mm$^2$) en fonction de la taille L1, pour A7 (gauche) et A15 (droite).}}{13}{figure.caption.35}\protected@file@percent }
-\newlabel{fig:q9_eff}{{7}{13}{Q9 --- Efficacite surfacique (IPC / mm$^2$) en fonction de la taille L1, pour A7 (gauche) et A15 (droite)}{figure.caption.35}{}}
-\@writefile{toc}{\contentsline {paragraph}{Analyse.}{13}{paragraph*.36}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}4. Efficacité énergétique}{13}{subsection.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Q10 --- Puissance consommee a la frequence maximale}{13}{subsubsection.3.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Réponse.}{13}{paragraph*.37}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Q11 --- Efficacite energetique (IPC / mW) selon la taille de L1}{14}{subsubsection.3.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Méthode.}{14}{paragraph*.38}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Q11 --- A7 : efficacite energetique (IPC / mW) selon L1}}{14}{table.caption.39}\protected@file@percent }
-\newlabel{tab:q11_a7}{{11}{14}{Q11 --- A7 : efficacite energetique (IPC / mW) selon L1}{table.caption.39}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Q11 --- A15 : efficacite energetique (IPC / mW) selon L1}}{14}{table.caption.40}\protected@file@percent }
-\newlabel{tab:q11_a15}{{12}{14}{Q11 --- A15 : efficacite energetique (IPC / mW) selon L1}{table.caption.40}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Q11 --- Efficacite energetique (IPC / mW) en fonction de la taille L1, pour A7 (gauche) et A15 (droite).}}{14}{figure.caption.41}\protected@file@percent }
-\newlabel{fig:q11_eff}{{8}{14}{Q11 --- Efficacite energetique (IPC / mW) en fonction de la taille L1, pour A7 (gauche) et A15 (droite)}{figure.caption.41}{}}
-\@writefile{toc}{\contentsline {paragraph}{Analyse.}{15}{paragraph*.42}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}5. Architecture système big.LITTLE}{15}{subsection.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}Q12 --- Choix de la configuration L1 pour un systeme big.LITTLE}{15}{subsubsection.3.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Proposition (par application).}{15}{paragraph*.43}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}6. Facultatif}{15}{subsection.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}Q13 (facultatif) --- Equivalence des choix et compromis}{15}{subsubsection.3.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Compromis retenu.}{15}{paragraph*.44}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Justification (energie/performance).}{16}{paragraph*.45}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Justification (surface).}{16}{paragraph*.46}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Q14 (facultatif) --- Approche de specification pour un domaine robotique embarque}{16}{subsubsection.3.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Domaine vise.}{16}{paragraph*.47}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Contraintes (hypotheses realistes).}{16}{paragraph*.48}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Ensemble representatif d'applications.}{16}{paragraph*.49}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Caracterisation des applications (ce qu'il faut mesurer).}{17}{paragraph*.50}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Metrices et objectif d'optimisation.}{17}{paragraph*.51}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Espace de conception (parametres a explorer).}{17}{paragraph*.52}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Decision finale (exemple de methode).}{17}{paragraph*.53}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Resultat attendu.}{17}{paragraph*.54}\protected@file@percent }
-\gdef \@abspage@last{18}
+\newlabel{tab:cache_conf}{{1}{3}{Paramètres de cache pour les configurations C1 et C2}{table.caption.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Q2 - Comparaison de performances}{3}{subsubsection.2.1.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Resultats de Instructions Miss Rate (IMR)}}{3}{table.caption.2}\protected@file@percent }
+\newlabel{tab:IMR}{{2}{3}{Resultats de Instructions Miss Rate (IMR)}{table.caption.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Resultats de Data Cache Miss Rate (DMR)}}{3}{table.caption.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Resultats de Unified Cache Rate (UCR)}}{4}{table.caption.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}Q3 - Localité de références}{4}{subsubsection.2.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Exercice 4 --- Architecture big.LITTLE : Dijkstra \& BlowFish}{4}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}1. Profiling de l'application}{4}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Q1 — Pourcentage par classe d’instructions}{4}{subsubsection.3.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Objectif.}{4}{paragraph*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Méthodologie.}{4}{paragraph*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Résultats.}{5}{paragraph*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Pourcentage d’instructions par classe (gem5) — Dijkstra vs BlowFish (A7 et A15)}}{5}{table.caption.8}\protected@file@percent }
+\newlabel{tab:iclass}{{5}{5}{Pourcentage d’instructions par classe (gem5) — Dijkstra vs BlowFish (A7 et A15)}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.2}Q2 — Catégorie d’instructions à optimiser}{5}{subsubsection.3.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Réponse.}{5}{paragraph*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}2. Evaluation des performances}{6}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Q4 — Cortex A7 : impact de la taille de L1 (L1I = L1D)}{6}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Paramètres d’exécution (gem5).}{6}{paragraph*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Q4 (Cortex A7) — \texttt  {dijkstra\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}}{6}{table.caption.11}\protected@file@percent }
+\newlabel{tab:q4_a7_dijkstra}{{6}{6}{Q4 (Cortex A7) — \texttt {dijkstra\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Q4 (Cortex A7) — \texttt  {blowfish\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:q4_a7_blowfish}{{7}{6}{Q4 (Cortex A7) — \texttt {blowfish\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}{table.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Q4 (A7) — \texttt  {dijkstra\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1.}}{7}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:q4_a7_dijkstra}{{1}{7}{Q4 (A7) — \texttt {dijkstra\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1}{figure.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Q4 (A7) — \texttt  {blowfish\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1.}}{7}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:q4_a7_blowfish}{{2}{7}{Q4 (A7) — \texttt {blowfish\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1}{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Analyse}{7}{paragraph*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Meilleure configuration (A7).}{8}{paragraph*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Q5 — Cortex A15 : impact de la taille de L1 (L1I = L1D)}{8}{subsubsection.3.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Paramètres d’exécution (gem5).}{8}{paragraph*.17}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Q5 (Cortex A15) — \texttt  {dijkstra\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}}{8}{table.caption.18}\protected@file@percent }
+\newlabel{tab:q5_a15_dijkstra}{{8}{8}{Q5 (Cortex A15) — \texttt {dijkstra\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Q5 (Cortex A15) — \texttt  {blowfish\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}}{9}{table.caption.19}\protected@file@percent }
+\newlabel{tab:q5_a15_blowfish}{{9}{9}{Q5 (Cortex A15) — \texttt {blowfish\_large} : métriques vs taille L1 (L1I=L1D, L2=512kB)}{table.caption.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Q5 (A15) — \texttt  {dijkstra\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1.}}{9}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:q5_a15_dijkstra}{{3}{9}{Q5 (A15) — \texttt {dijkstra\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1}{figure.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Q5 (A15) — \texttt  {blowfish\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1.}}{10}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:q5_a15_blowfish}{{4}{10}{Q5 (A15) — \texttt {blowfish\_large} : IPC, cycles, hiérarchie mémoire et prédiction de branchement vs taille L1}{figure.caption.21}{}}
+\@writefile{toc}{\contentsline {paragraph}{Analyse}{10}{paragraph*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Remarque (BlowFish, L1={32}{kB}) : pic de miss L2.}{10}{paragraph*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Meilleure configuration (A15).}{10}{paragraph*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}3. Efficacité surfacique}{10}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Q6 — Paramètres par défaut dans \texttt  {cache.cfg}}{11}{subsubsection.3.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Réponse.}{11}{paragraph*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Remarque (technologie).}{11}{paragraph*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Q7 — Surface L1, pourcentage et taille des coeurs}{11}{subsubsection.3.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Méthode.}{11}{paragraph*.27}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Q7 — Résultats de surface (CACTI 32nm)}}{12}{table.caption.28}\protected@file@percent }
+\newlabel{tab:q7_surface}{{10}{12}{Q7 — Résultats de surface (CACTI 32nm)}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {paragraph}{Analyse.}{12}{paragraph*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}Q8 --- Variation de la taille L1 et nouvelle surface totale}{12}{subsubsection.3.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Méthode.}{12}{paragraph*.30}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Q8 --- A7 : surface L1 totale et surface totale (coeur + L1 + L2)}}{12}{table.caption.31}\protected@file@percent }
+\newlabel{tab:q8_a7}{{11}{12}{Q8 --- A7 : surface L1 totale et surface totale (coeur + L1 + L2)}{table.caption.31}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Q8 --- A15 : surface L1 totale et surface totale (coeur + L1 + L2)}}{13}{table.caption.32}\protected@file@percent }
+\newlabel{tab:q8_a15}{{12}{13}{Q8 --- A15 : surface L1 totale et surface totale (coeur + L1 + L2)}{table.caption.32}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Q8 --- Surface L1 totale en fonction de la taille L1 (A7 et A15), en valeurs absolues (mm$^2$), pas en pourcentage.}}{13}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:q8_l1_area}{{5}{13}{Q8 --- Surface L1 totale en fonction de la taille L1 (A7 et A15), en valeurs absolues (mm$^2$), pas en pourcentage}{figure.caption.33}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Q8 --- Surface totale en fonction de la taille L1 (gauche) et variation de surface par rapport a la plus petite L1 testée (droite).}}{13}{figure.caption.34}\protected@file@percent }
+\newlabel{fig:q8_total_area}{{6}{13}{Q8 --- Surface totale en fonction de la taille L1 (gauche) et variation de surface par rapport a la plus petite L1 testée (droite)}{figure.caption.34}{}}
+\@writefile{toc}{\contentsline {paragraph}{Analyse.}{14}{paragraph*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.4}Q9 --- Efficacite surfacique (IPC / mm$^2$) selon la taille de L1}{14}{subsubsection.3.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Méthode.}{14}{paragraph*.36}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Q9 --- A7 : efficacite surfacique (IPC / mm$^2$) selon L1}}{14}{table.caption.37}\protected@file@percent }
+\newlabel{tab:q9_a7}{{13}{14}{Q9 --- A7 : efficacite surfacique (IPC / mm$^2$) selon L1}{table.caption.37}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Q9 --- A15 : efficacite surfacique (IPC / mm$^2$) selon L1}}{14}{table.caption.38}\protected@file@percent }
+\newlabel{tab:q9_a15}{{14}{14}{Q9 --- A15 : efficacite surfacique (IPC / mm$^2$) selon L1}{table.caption.38}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Q9 --- Efficacite surfacique (IPC / mm$^2$) en fonction de la taille L1, pour A7 (gauche) et A15 (droite).}}{15}{figure.caption.39}\protected@file@percent }
+\newlabel{fig:q9_eff}{{7}{15}{Q9 --- Efficacite surfacique (IPC / mm$^2$) en fonction de la taille L1, pour A7 (gauche) et A15 (droite)}{figure.caption.39}{}}
+\@writefile{toc}{\contentsline {paragraph}{Analyse.}{15}{paragraph*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}4. Efficacité énergétique}{15}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Q10 --- Puissance consommee a la frequence maximale}{15}{subsubsection.3.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Réponse.}{15}{paragraph*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Q11 --- Efficacite energetique (IPC / mW) selon la taille de L1}{16}{subsubsection.3.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Méthode.}{16}{paragraph*.42}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Q11 --- A7 : efficacite energetique (IPC / mW) selon L1}}{16}{table.caption.43}\protected@file@percent }
+\newlabel{tab:q11_a7}{{15}{16}{Q11 --- A7 : efficacite energetique (IPC / mW) selon L1}{table.caption.43}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Q11 --- A15 : efficacite energetique (IPC / mW) selon L1}}{16}{table.caption.44}\protected@file@percent }
+\newlabel{tab:q11_a15}{{16}{16}{Q11 --- A15 : efficacite energetique (IPC / mW) selon L1}{table.caption.44}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Q11 --- Efficacite energetique (IPC / mW) en fonction de la taille L1, pour A7 (gauche) et A15 (droite).}}{16}{figure.caption.45}\protected@file@percent }
+\newlabel{fig:q11_eff}{{8}{16}{Q11 --- Efficacite energetique (IPC / mW) en fonction de la taille L1, pour A7 (gauche) et A15 (droite)}{figure.caption.45}{}}
+\@writefile{toc}{\contentsline {paragraph}{Analyse.}{17}{paragraph*.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}5. Architecture système big.LITTLE}{17}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}Q12 --- Choix de la configuration L1 pour un systeme big.LITTLE}{17}{subsubsection.3.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Proposition (par application).}{17}{paragraph*.47}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}6. Facultatif}{17}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}Q13 (facultatif) --- Equivalence des choix et compromis}{17}{subsubsection.3.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Compromis retenu.}{17}{paragraph*.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Justification (energie/performance).}{18}{paragraph*.49}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Justification (surface).}{18}{paragraph*.50}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Q14 (facultatif) --- Approche de specification pour un domaine robotique embarque}{18}{subsubsection.3.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domaine vise.}{18}{paragraph*.51}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contraintes (hypotheses realistes).}{18}{paragraph*.52}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ensemble representatif d'applications.}{18}{paragraph*.53}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Caracterisation des applications (ce qu'il faut mesurer).}{19}{paragraph*.54}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrices et objectif d'optimisation.}{19}{paragraph*.55}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Espace de conception (parametres a explorer).}{19}{paragraph*.56}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decision finale (exemple de methode).}{19}{paragraph*.57}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Resultat attendu.}{19}{paragraph*.58}\protected@file@percent }
+\gdef \@abspage@last{20}
