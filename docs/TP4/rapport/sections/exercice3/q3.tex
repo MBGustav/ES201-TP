@@ -7,5 +7,5 @@
     localité de références pour le code ? Pourquoi ?
 \end{formal}
 
-
+Oui. On observe une excellente localité de référence côté instructions : le taux de défaut du cache d'instructions est quasi nul (environ 0,00\%) pour l'ensemble des programmes et ce, quelle que soit la configuration de cache (voir Table~\ref{tab:IMR}). Cela indique que le flot d'instructions tient dans le cache d'instructions et que les boucles de multiplication réutilisent en permanence le même petit segment de code, ce qui met bien en évidence la localité spatiale et temporelle.
 

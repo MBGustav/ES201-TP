@@ -1,0 +1,40 @@
+% !TeX root = ../../rapport.tex
+\subsubsection{Q3 — Similitudes/divergences comportementales}
+
+\begin{formal}
+\textbf{Énoncé (Q3).}
+Au regard des résultats obtenus lors du TP2, pouvez-vous justifier d’éventuelles
+similitudes/divergences comportementales entre \texttt{dijkstra}, \texttt{BlowFish},
+\texttt{SSCA2-BCS}, \texttt{SHA-1} et le produit de polynômes ?
+\end{formal}
+
+\paragraph{Réponse.}
+L'analyse comparative des profils d'exécution entre \texttt{dijkstra}, \texttt{BlowFish}, \texttt{SSCA2-BCS},
+\texttt{SHA-1} et le produit de polynômes met en évidence les tendances suivantes :
+
+\paragraph{Convergences.}
+\begin{itemize}[leftmargin=*, itemsep=0.2em]
+  \item \textbf{Intensité de calcul :} Les algorithmes cryptographiques (\texttt{BlowFish} et \texttt{SHA-1})
+        sollicitent fortement le processeur, principalement via de l'arithmétique entière.
+  \item \textbf{Intensité des accès mémoire :} La manipulation de structures de données complexes par
+        \texttt{dijkstra} et \texttt{SSCA2-BCS} se traduit par un volume important d'opérations de lecture et
+        d'écriture en mémoire.
+\end{itemize}
+
+\paragraph{Divergences.}
+\begin{itemize}[leftmargin=*, itemsep=0.2em]
+  \item Contrairement aux flux d'exécution linéaires de \texttt{BlowFish} et \texttt{SHA-1}, l'algorithme de
+        \texttt{dijkstra} se singularise par une forte densité de sauts conditionnels nécessaires à la
+        détermination des chemins.
+  \item Le produit de polynômes présente un profil hybride, alternant calculs et accès mémoire fréquents,
+        ce qui rend critique l'optimisation des transferts de données.
+\end{itemize}
+
+\paragraph{Compléments d'analyse.}
+\begin{itemize}[leftmargin=*, itemsep=0.2em]
+  \item \textbf{Impact des misses :} Lorsque le CPI diminue, les défauts de cache deviennent plus pénalisants ;
+        la réduction des misses (L1/L2) peut alors apporter un gain notable.
+  \item \textbf{Irrégularité mémoire et préfetching :} Pour \texttt{dijkstra}/\texttt{SSCA2-BCS}, les accès
+        irréguliers (\emph{pointer chasing}) rendent le préchargement moins efficace et augmentent la sensibilité
+        à la hiérarchie mémoire et à l’exécution OoO.
+\end{itemize}
