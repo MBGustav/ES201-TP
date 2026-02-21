@@ -1,0 +1,21 @@
+\subsubsection{Q6 — Paramètres par défaut dans \texttt{cache.cfg}}
+
+\begin{formal}
+\textbf{Énoncé (Q6).}
+Observez le fichier de configuration \texttt{cache.cfg}. Quels sont les paramètres de cache
+(taille, taille de bloc, associativité) et la technologie (nm) utilisés par défaut ?
+\end{formal}
+
+\paragraph{Réponse.}
+D’après les lignes non commentées du fichier \texttt{cache.cfg}, la configuration par défaut est :
+\begin{itemize}[leftmargin=*, itemsep=0.2em]
+  \item Taille du cache : \textbf{32 kB} (\texttt{-size (bytes) 32768})
+  \item Taille de bloc (ligne) : \textbf{64 B} (\texttt{-block size (bytes) 64})
+  \item Associativité : \textbf{2-way} (\texttt{-associativity 2})
+  \item Technologie : \textbf{32 nm} (\texttt{-technology (u) 0.032})
+\end{itemize}
+
+\paragraph{Remarque (technologie).}
+Le sujet cible 28 nm, mais la version de CACTI utilisée dans ce TP ne permet pas d’obtenir un résultat stable à 28 nm
+(abandon interne lors de l’exécution). Conformément à la note de l’énoncé (32 nm si 28 nm n’est pas supporté),
+les estimations de surface sont donc réalisées en 32 nm (\texttt{-technology (u) 0.032}, soit 0.032 um).

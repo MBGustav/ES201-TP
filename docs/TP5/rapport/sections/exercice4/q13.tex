@@ -1,0 +1,23 @@
+% !TeX root = ../../rapport.tex
+\subsubsection{Q13 (facultatif) --- Equivalence des choix et compromis}
+
+\begin{formal}
+\textbf{Énoncé (Q13).}
+Les configurations proposees sont-elles equivalentes ? Proposer eventuellement un compromis et conclure sur les applications etudiees.
+\end{formal}
+
+\paragraph{Compromis retenu.}
+Pour conserver une \emph{seule} configuration de L1 capable de supporter correctement les deux applications sur un systeme big.LITTLE, nous retenons :
+\begin{itemize}[leftmargin=*, itemsep=0.15em]
+  \item \textbf{A7 : L1 = 8 kB}
+  \item \textbf{A15 : L1 = 32 kB}
+\end{itemize}
+
+\paragraph{Justification (energie/performance).}
+Sur A7 (Table~\ref{tab:q11_a7}), augmenter de 8 kB a 16 kB apporte un gain d'IPC/mW faible : +2.7\% pour \texttt{dijkstra} et +0.5\% pour \texttt{blowfish}.
+Sur A15 (Table~\ref{tab:q11_a15}), au contraire, le gain entre 16 kB et 32 kB reste important : +16.3\% pour \texttt{dijkstra} et +7.7\% pour \texttt{blowfish},
+ce qui justifie le choix de 32 kB pour le coeur ``big''.
+
+\paragraph{Justification (surface).}
+Le surcout en surface totale reste modere : sur A7, passer de 8 kB a 16 kB augmente la surface d'environ +0.007 mm$^2$ ($\approx$ +0.8\%, Table~\ref{tab:q8_a7}),
+et sur A15, passer de 16 kB a 32 kB augmente la surface d'environ +0.041 mm$^2$ ($\approx$ +1.7\%, Table~\ref{tab:q8_a15}).

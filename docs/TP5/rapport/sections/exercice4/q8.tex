@@ -1,0 +1,84 @@
+% !TeX root = ../../rapport.tex
+\subsubsection{Q8 --- Variation de la taille L1 et nouvelle surface totale}
+
+\begin{formal}
+\textbf{Énoncé (Q8).}
+Faire varier la taille des caches L1 pour le Cortex A7 et le Cortex A15, puis donner (en mm$^2$) les surfaces L1 obtenues.
+Avec la configuration L2 utilisée précédemment (512 kB), en déduire pour chaque valeur les nouvelles surfaces totales
+(coeur + L1 + L2), et présenter les résultats sous forme de graphes.
+\end{formal}
+
+\paragraph{Méthode.}
+Pour chaque architecture, nous avons fait un balayage des tailles L1 (L1I = L1D) avec CACTI en 32 nm.
+Les paramètres de blocs/associativité suivent le Tableau 12 :
+\begin{itemize}[leftmargin=*, itemsep=0.2em]
+  \item A7 : taille L1 variable (1, 2, 4, 8, 16 kB), bloc 32 B, associativité 2 ; L2 = 512 kB, bloc 32 B, associativité 8
+  \item A15 : taille L1 variable (2, 4, 8, 16, 32 kB), bloc 64 B, associativité 2 ; L2 = 512 kB, bloc 64 B, associativité 16
+\end{itemize}
+Les calculs utilisés sont :
+\[
+S_{L1,\text{total}} = S_{L1I} + S_{L1D},\qquad
+S_{\text{total}} = S_{\text{coeur sans L1}} + S_{L1,\text{total}} + S_{L2}
+\]
+avec les surfaces coeur sans L1 obtenues en Q7.
+
+\begin{table}[H]
+\centering
+\caption{Q8 --- A7 : surface L1 totale et surface totale (coeur + L1 + L2)}
+\label{tab:q8_a7}
+\small
+\setlength{\tabcolsep}{7pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular}{c c c}
+\toprule
+\textbf{L1 (kB)} & \textbf{$S_{L1,\text{total}}$ (mm$^2$)} & \textbf{$S_{\text{total}}$ (mm$^2$)} \\
+\midrule
+1  & 0.0085 & 0.8274 \\
+2  & 0.0209 & 0.8397 \\
+4  & 0.0114 & 0.8302 \\
+8  & 0.0257 & 0.8445 \\
+16 & 0.0324 & 0.8513 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Q8 --- A15 : surface L1 totale et surface totale (coeur + L1 + L2)}
+\label{tab:q8_a15}
+\small
+\setlength{\tabcolsep}{7pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular}{c c c}
+\toprule
+\textbf{L1 (kB)} & \textbf{$S_{L1,\text{total}}$ (mm$^2$)} & \textbf{$S_{\text{total}}$ (mm$^2$)} \\
+\midrule
+2  & 0.0202 & 2.3506 \\
+4  & 0.0102 & 2.3406 \\
+8  & 0.0236 & 2.3539 \\
+16 & 0.0282 & 2.3586 \\
+32 & 0.0691 & 2.3995 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.88\linewidth]{plot_q8_l1_area_vs_size.png}
+\caption{Q8 --- Surface L1 totale en fonction de la taille L1 (A7 et A15), en valeurs absolues (mm$^2$), pas en pourcentage.}
+\label{fig:q8_l1_area}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{plot_q8_total_area_vs_size.png}
+\caption{Q8 --- Surface totale en fonction de la taille L1 (gauche) et variation de surface par rapport a la plus petite L1 testée (droite).}
+\label{fig:q8_total_area}
+\end{figure}
+
+\paragraph{Analyse.}
+Les courbes de la Figure~\ref{fig:q8_l1_area} montrent que la surface des caches L1 augmente globalement quand la taille L1 augmente.
+Ce résultat est logique : plus de capacité implique plus de cellules mémoire et donc plus de surface occupée.
+Important : cette figure est une comparaison en mm$^2$ absolus (et non une comparaison en \%).
+Donc, si deux points paraissent proches, cela ne veut pas dire que les deux architectures ont la même taille globale ;
+cela veut seulement dire que la surface L1 estimée par CACTI est proche pour ces configurations.

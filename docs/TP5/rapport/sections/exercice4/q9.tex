@@ -1,0 +1,85 @@
+% !TeX root = ../../rapport.tex
+\subsubsection{Q9 --- Efficacite surfacique (IPC / mm$^2$) selon la taille de L1}
+
+\begin{formal}
+\textbf{Énoncé (Q9).}
+En prenant en compte les deux dimensions (performance et surface) pour les deux processeurs considérés,
+donnez pour chaque configuration de L1 l'efficacite surfacique de chaque processeur.
+\newline\textbf{N.B. :} Efficacite surfacique = IPC / surface(mm$^2$).
+\end{formal}
+
+\paragraph{Méthode.}
+Pour la performance, nous utilisons l'IPC mesuré sous gem5 :
+\begin{itemize}[leftmargin=*, itemsep=0.2em]
+  \item A7 : IPC issus de Q4 (tailles L1 = 1, 2, 4, 8, 16 kB)
+  \item A15 : IPC issus de Q5 (tailles L1 = 2, 4, 8, 16, 32 kB)
+\end{itemize}
+Pour la surface, nous utilisons les surfaces totales estimées en Q8 avec CACTI :
+coeur sans L1 + L1I + L1D + L2 (avec L1I = L1D dans notre balayage).
+L2 est fixe a 512 kB (technologie 32 nm). Pour chaque point :
+\[
+\text{efficacite surfacique} = \frac{\text{IPC}}{\text{surface totale (mm$^2$)}}
+\]
+
+\begin{table}[H]
+\centering
+\caption{Q9 --- A7 : efficacite surfacique (IPC / mm$^2$) selon L1}
+\label{tab:q9_a7}
+\scriptsize
+\setlength{\tabcolsep}{4.5pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular}{c c c c c c}
+\toprule
+\textbf{L1 (kB)} & \textbf{Surface totale (mm$^2$)} & \textbf{IPC (dijkstra)} & \textbf{IPC/mm$^2$ (dijkstra)} & \textbf{IPC (blowfish)} & \textbf{IPC/mm$^2$ (blowfish)} \\
+\midrule
+1  & 0.8274 & 0.2319 & 0.2802 & 0.2520 & 0.3045 \\
+2  & 0.8397 & 0.2394 & 0.2851 & 0.2579 & 0.3072 \\
+4  & 0.8302 & 0.2499 & 0.3010 & 0.2702 & 0.3254 \\
+8  & 0.8445 & 0.2714 & 0.3214 & 0.2966 & 0.3512 \\
+16 & 0.8513 & 0.2787 & 0.3274 & 0.2981 & 0.3502 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Q9 --- A15 : efficacite surfacique (IPC / mm$^2$) selon L1}
+\label{tab:q9_a15}
+\scriptsize
+\setlength{\tabcolsep}{4.5pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular}{c c c c c c}
+\toprule
+\textbf{L1 (kB)} & \textbf{Surface totale (mm$^2$)} & \textbf{IPC (dijkstra)} & \textbf{IPC/mm$^2$ (dijkstra)} & \textbf{IPC (blowfish)} & \textbf{IPC/mm$^2$ (blowfish)} \\
+\midrule
+2  & 2.3506 & 0.6542 & 0.2783 & 1.0601 & 0.4510 \\
+4  & 2.3406 & 0.7165 & 0.3061 & 1.1343 & 0.4846 \\
+8  & 2.3539 & 0.9014 & 0.3829 & 1.3597 & 0.5776 \\
+16 & 2.3586 & 0.9818 & 0.4163 & 1.3901 & 0.5894 \\
+32 & 2.3995 & 1.1418 & 0.4758 & 1.4975 & 0.6241 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.98\linewidth]{plot_q9_efficiency.png}
+\caption{Q9 --- Efficacite surfacique (IPC / mm$^2$) en fonction de la taille L1, pour A7 (gauche) et A15 (droite).}
+\label{fig:q9_eff}
+\end{figure}
+
+\paragraph{Analyse.}
+La Figure~\ref{fig:q9_eff} et les Tables~\ref{tab:q9_a7} et~\ref{tab:q9_a15} montrent que l'efficacite surfacique
+augmente globalement quand on augmente L1. C'est un resultat logique ici, car l'augmentation de surface totale entre deux points
+reste relativement faible (la surface est dominée par le coeur sans L1 et par L2), alors que l'IPC beneficie directement
+de la baisse des misses quand L1 grandit.
+
+Pour A7, on observe clairement un effet de rendements decroissants : entre 4 kB et 8 kB, l'efficacite surfacique progresse nettement
+(environ +6.8\% sur \texttt{dijkstra} et +7.9\% sur \texttt{blowfish}), alors qu'entre 8 kB et 16 kB le gain est faible
+(environ +1.9\% sur \texttt{dijkstra} et quasi nul sur \texttt{blowfish}). Cela indique qu'a partir de 8 kB, une grande partie du
+\emph{working set} critique tient deja dans L1 : augmenter davantage L1 apporte peu en IPC, donc peu en IPC/mm$^2$.
+Ainsi, meme si 16 kB est le maximum pour \texttt{dijkstra}, 8 kB apparait comme un choix tres proche et plus \"equilibre\".
+
+Pour A15, la tendance est plus favorable a de grandes L1 : le passage de 16 kB a 32 kB augmente l'efficacite surfacique de maniere
+plus significative (environ +14.3\% sur \texttt{dijkstra} et +5.9\% sur \texttt{blowfish}), ce qui justifie que 32 kB soit la meilleure
+configuration sur les points testes.

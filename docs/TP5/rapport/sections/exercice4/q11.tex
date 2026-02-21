@@ -1,0 +1,70 @@
+% !TeX root = ../../rapport.tex
+\subsubsection{Q11 --- Efficacite energetique (IPC / mW) selon la taille de L1}
+
+\begin{formal}
+\textbf{Énoncé (Q11).}
+Avec le meme protocole que precedemment, et en prenant en compte les deux dimensions (energie et surface)
+pour les deux processeurs consideres, donnez pour chaque configuration de L1 l'efficacite energetique de chaque processeur
+(a frequence maximale).
+\newline\textbf{N.B. :} Efficacite energetique = IPC / consommation energie (mW).
+\end{formal}
+
+\paragraph{Méthode.}
+Nous utilisons l'IPC mesure sous gem5 (A7: Q4, A15: Q5) et la puissance a frequence maximale calculee en Q10.
+Ici, la puissance est supposee constante pour un coeur donne (d'apres les donnees du sujet), donc :
+\[
+\text{efficacite energetique} = \frac{\text{IPC}}{P_{\max}(\text{mW})}
+\]
+avec $P_{\max}=100$ mW pour A7 et $P_{\max}=500$ mW pour A15.
+
+\begin{table}[H]
+\centering
+\caption{Q11 --- A7 : efficacite energetique (IPC / mW) selon L1}
+\label{tab:q11_a7}
+\scriptsize
+\setlength{\tabcolsep}{4.5pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular}{c c c c c}
+\toprule
+\textbf{L1 (kB)} & \textbf{IPC (dijkstra)} & \textbf{IPC/mW (dijkstra)} & \textbf{IPC (blowfish)} & \textbf{IPC/mW (blowfish)} \\
+\midrule
+1  & 0.2319 & 0.002319 & 0.2520 & 0.002520 \\
+2  & 0.2394 & 0.002394 & 0.2579 & 0.002579 \\
+4  & 0.2499 & 0.002499 & 0.2702 & 0.002702 \\
+8  & 0.2714 & 0.002714 & 0.2966 & 0.002966 \\
+16 & 0.2787 & 0.002787 & 0.2981 & 0.002981 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Q11 --- A15 : efficacite energetique (IPC / mW) selon L1}
+\label{tab:q11_a15}
+\scriptsize
+\setlength{\tabcolsep}{4.5pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular}{c c c c c}
+\toprule
+\textbf{L1 (kB)} & \textbf{IPC (dijkstra)} & \textbf{IPC/mW (dijkstra)} & \textbf{IPC (blowfish)} & \textbf{IPC/mW (blowfish)} \\
+\midrule
+2  & 0.6542 & 0.001308 & 1.0601 & 0.002120 \\
+4  & 0.7165 & 0.001433 & 1.1343 & 0.002269 \\
+8  & 0.9014 & 0.001803 & 1.3597 & 0.002719 \\
+16 & 0.9818 & 0.001964 & 1.3901 & 0.002780 \\
+32 & 1.1418 & 0.002284 & 1.4975 & 0.002995 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.98\linewidth]{plot_q11_efficiency.png}
+\caption{Q11 --- Efficacite energetique (IPC / mW) en fonction de la taille L1, pour A7 (gauche) et A15 (droite).}
+\label{fig:q11_eff}
+\end{figure}
+
+\paragraph{Analyse.}
+La Figure~\ref{fig:q11_eff} et les Tables~\ref{tab:q11_a7} et~\ref{tab:q11_a15} donnent directement l'efficacite energetique
+(IPC/mW) pour chaque taille de L1. Dans ce modele, $P_{\max}$ est constant par coeur, donc l'evolution d'IPC/mW suit
+exactement l'evolution de l'IPC.

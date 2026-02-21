@@ -1,0 +1,18 @@
+% !TeX root = ../../rapport.tex
+\subsubsection{Q2 — Catégorie d’instructions à optimiser}
+
+\begin{formal}
+\textbf{Énoncé (Q2).}
+Quelle catégorie d'instructions nécessiterait une amélioration de performances ?
+Expliquez en quelques lignes (max 5 lignes).
+\end{formal}
+
+\paragraph{Réponse.}
+\textbf{Categorie a ameliorer en priorite : Load/Store (memoire).}
+Les entiers dominent en nombre (Table~\ref{tab:iclass}), mais ils sont generalement peu couteux ; a l'inverse, les acces memoire subissent la penalite
+des \textbf{misses} de cache, qui peuvent bloquer le pipeline (stalls) et degrader fortement l'IPC. Il faut donc viser une meilleure hierarchie memoire
+(latence/taux de miss L1D/L2, bande passante, prefetch), et \texttt{BlowFish} est encore plus sensible cote ecritures (stores).
+
+% ====================================================
+% 2. ÉVALUATION DES PERFORMANCES
+% ====================================================

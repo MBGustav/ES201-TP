@@ -1,0 +1,39 @@
+\subsubsection{Question 1}
+
+\begin{formal}
+\textbf{Énoncé (Q1).}
+n considérant que chaque thread s'exécute sur un processeur dans une architecture
+de type multicoeurs à base de bus et 1 niveau de cache (comme décrit Figure 21), décrivez le
+comportement de la hiérarchie mémoire et de la cohérence des caches pour l'algorithme de
+multiplication de matrices. On supposera que le thread principal se trouve sur le processeur
+d'indice 1.
+\end{formal}
+
+
+\begin{lstlisting}[language=C, caption=Utilisation de openMP pour multiplication matricial, label={lst:mult-omp}]
+// (...)
+
+  #pragma omp parallel for
+  for(int x = 0; x < size; x++) {
+    for (int y = 0; y < size; y++) {
+      int64_t tot;
+      for (int m = 0; m < size; m++) {
+        tot += A[x*size + m]*B[m*size + y];
+      }
+      C[x*size + y] = tot;
+    }
+  }
+
+// (...)
+\end{lstlisting}
+
+
+Dans l'algorithme de multiplication de matrices présenté dans le Listing~\ref{lst:mult-omp}, chaque thread s'exécute sur un processeur dans une architecture multicoeurs. Chaque thread accède à la mémoire pour lire les éléments des matrices A et B, et pour écrire les résultats dans la matrice C.
+La hiérarchie mémoire dans cette architecture multicoeurs comprend un niveau de cache partagé entre les processeurs. Lorsque les threads accèdent aux éléments des matrices, ils peuvent bénéficier de la localité de références, ce qui signifie que les données récemment utilisées sont susceptibles d'être réutilisées prochainement. Cependant, si plusieurs threads accèdent simultanément à des éléments de matrice qui ne sont pas contigus en mémoire (par exemple, en accédant à des éléments de la matrice B), cela peut entraîner des cache misses, ce qui ralentit les performances, sachant que les access à la matrice B sont dans l'ordre de la colonne, ce qui n'est pas optimal pour la localité de référence.
+
+
+
+
+
+
+
