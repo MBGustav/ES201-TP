@@ -2,20 +2,25 @@
 
 \begin{formal}
 \textbf{Énoncé (Q2).}
-Examinez le fichier de déclaration d’un élément de type « processeur superscalaire out-of-order », et présentez sous forme de tableau cinq paramètres configurables de ce type de processeur avec leur valeur par défaut. Choisissez de préférence des paramètres étudiés lors des séances TD/TP précédentes.  Le fichier à consulter est le suivant: \$GEM5/src/cpu/o3/O3CPU.py
+Examinez le fichier de déclaration d'un élément de type « processeur superscalaire out-of-order », et présentez sous forme de tableau cinq paramètres configurables de ce type de processeur avec leur valeur par défaut. Choisissez de préférence des paramètres étudiés lors des séances TD/TP précédentes.  Le fichier à consulter est le suivant: \$GEM5/src/cpu/o3/O3CPU.py
 \end{formal}
 
 \begin{table}
 \centering
 \begin{tabular}{|c|c|c|} 
     \textbf{Paramètre} & \textbf{Description} & \textbf{Valeur par défaut} \\\hline\hline
-    fetchWidth    & Nº d'instr. que peut récupérer par cycle & 4 \\
-    decodeWidth   & Nº d'instr. que peut décoder par cycle & 4 \\
-    issueWidth    & Nº d'instr. que peut émettre par cycle & 4 \\
-    commitWidth   & Nº d'instr. que peut valider par cycle & 4 \\
-    numROBEntries & Nº d'entrées dans la Reorder Buffer (ROB) & 192 \\
+    Nº d'instr. que peut récupérer par cycle & fetchWidth     & 4 \\
+    Nº d'instr. que peut décoder par cycle   & decodeWidth    & 4 \\
+    Nº d'instr. que peut émettre par cycle   & issueWidth     & 4 \\
+    Nº d'instr. que peut valider par cycle   & commitWidth    & 4 \\
+    Nº d'entrées dans la Reorder Buffer (ROB)& numROBEntries  & 192 \\
 \end{tabular}
 \caption{Paramètres configurables d'un processeur superscalaire out-of-order}
 \label{tab:params}
 
 \end{table}
+
+
+% #TODO: Expliquer les parametres e comment ils influencent les performances...
+
+

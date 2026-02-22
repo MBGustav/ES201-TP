@@ -26,4 +26,11 @@ output*
 *~
 .core
 
-__pycache__/
+**/__pycache__/**
+**/.vscode/**
+**/*.aux
+**/*.fdb_latexmk
+**/*.fls
+**/*.synctex.gz
+**/*.toc
+**/gem5-stable/**
