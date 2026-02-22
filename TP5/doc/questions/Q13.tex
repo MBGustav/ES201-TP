@@ -1,9 +1,15 @@
-\subsection{Q13 --- Titre de la question}
+\subsection{Q13 --- Configuration CMP la plus efficace}
 
 \begin{formal}
 \textbf{Énoncé (Q13).}\\
-% Colle ici l’énoncé exact.
+Proposez une configuration ou une gamme de configuration de l'architecture CMP (nombre de threads de l'application \texttt{test\_omp}, nombre et type de cœurs) qui vous semble la plus appropriée si la contrainte recherchée par le concepteur du système est l'efficacité surfacique ? Discussion et interprétation (max. 10 lignes).\\
+\textbf{N.B. :} Vous vous appuierez sur les résultats des deux TD/TP (4 et 5).
 \end{formal}
 
 \subsubsection*{Réponse}
-% ...
+
+En nous appuyant sur les estimations du TP4, un cœur \textbf{Cortex-A15} (surface $\approx 4,7 \text{ mm}^2$) est environ dix fois plus encombrant qu'un cœur \textbf{Cortex-A7} ($\approx 0,45 \text{ mm}^2$). Or, les simulations du TP5 démontrent clairement que le Cortex-A15 n'apporte pas un gain de performance (Speedup ou IPC) capable de compenser ce coût spatial massif (la performance n'est pas multipliée par 10). Par conséquent, pour maximiser l'\textbf{efficacité surfacique} (ratio Performance / Surface), il faut privilégier une architecture CMP basée sur des cœurs \textbf{Cortex-A7}.
+
+Concernant le dimensionnement, nos analyses du TP5 (Q6 et Q8) ont mis en évidence que le speedup croît de manière satisfaisante au début, mais subit des rendements décroissants sévères au-delà de 4 à 8 threads, à cause de la contention sur le bus mémoire et des surcoûts de synchronisation. Ajouter des cœurs supplémentaires au-delà de ce point augmenterait la surface de la puce sans gain de performance proportionnel.
+
+\textbf{Conclusion :} La configuration la plus appropriée est un \textbf{CMP composé de 4 à 8 cœurs Cortex-A7} (exécutant 4 à 8 threads). Cette gamme offre le point d'équilibre optimal entre l'exploitation du parallélisme et la surface de silicium consommée.

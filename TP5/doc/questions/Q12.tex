@@ -1,9 +1,12 @@
-\subsection{Q12 --- Titre de la question}
+\subsection{Q12 --- Discussion et interprétation (Cortex A15)}
 
 \begin{formal}
 \textbf{Énoncé (Q12).}\\
-% Colle ici l’énoncé exact.
+Discussion et interprétation (max. 10 lignes).
 \end{formal}
 
 \subsubsection*{Réponse}
-% ...
+
+L'analyse des résultats met en évidence que l'augmentation du nombre de threads améliore le temps d'exécution (speedup), mais de manière sous-linéaire. Une nette saturation de l'accélération s'observe au-delà de 4 à 8 threads (rendements décroissants). Parallèlement, l'IPC du cœur critique chute drastiquement à mesure que le parallélisme augmente, ce qui illustre le poids grandissant des surcoûts (overhead) de synchronisation d'OpenMP et de la contention sur le bus mémoire partagé. 
+
+Fait remarquable, l'augmentation de la largeur d'émission du processeur superscalaire (\texttt{Width} passant de 2 à 4 puis 8) n'apporte quasiment aucun gain de performance significatif (les cycles d'exécution restent presque identiques). Cela indique que le goulot d'étranglement de l'architecture CMP sur cette application n'est plus la puissance de calcul intra-cœur (limite de l'ILP), mais bien le sous-système mémoire (bande passante, trafic de cohérence des caches) qui peine à alimenter les multiples cœurs très performants (Cortex A15) en données.

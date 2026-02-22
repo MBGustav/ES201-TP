@@ -1,9 +1,11 @@
-\subsection{Q14 --- Titre de la question}
+\subsection{Q14 --- Comportement supra-linéaire (Facultatif)}
 
 \begin{formal}
 \textbf{Énoncé (Q14).}\\
-% Colle ici l’énoncé exact.
+Au regard de l’évolution théorique du speedup et son évolution constatée lors des questions précédentes, proposez une tentative d’explication (max. 10 lignes).
 \end{formal}
 
 \subsubsection*{Réponse}
-% ...
+
+Théoriquement, le speedup est limité par le nombre de cœurs ($N$). Cependant, un comportement \textit{supra-linéaire} (Speedup $> N$) peut apparaître grâce à l'effet d'\textbf{agrégation des caches}.
+Lorsqu'un seul cœur traite une grande matrice (taille $>$ cache L1), il subit de nombreux défauts de cache (misses) coûteux, obligeant des accès lents à la RAM. En répartissant le calcul sur $N$ cœurs, la capacité totale de cache disponible est multipliée par $N$. Chaque thread traite alors une sous-partie de la matrice suffisamment petite pour tenir entièrement dans son cache local. Cette élimination des pénalités d'accès à la mémoire principale réduit drastiquement le temps moyen d'accès aux données, offrant un gain de performance supérieur à la simple addition des puissances de calcul.

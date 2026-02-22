@@ -1,9 +1,49 @@
-\subsection{Q11 --- Titre de la question}
+\subsection{Q11 --- Valeur maximale de l'IPC (Cortex A15)}
 
 \begin{formal}
 \textbf{Énoncé (Q11).}\\
-% Colle ici l’énoncé exact.
+En utilisant le nombre total d'instructions simulées, déterminez quelle est la valeur maximale de l'IPC pour chaque configuration ?
 \end{formal}
 
-\subsubsection*{Réponse}
-% ...
+\textbf{Réponse (Q11).}\\
+À partir des résultats de simulation (et en excluant les configurations ayant échoué, i.e., statut \texttt{FAIL}), nous avons extrait le nombre d'instructions du cœur critique (\texttt{insts\_max\_cpu}) ainsi que l'IPC correspondant (\texttt{ipc\_max\_cpu}). 
+
+Les données ont été regroupées en fonction de la largeur d'émission du processeur superscalaire out-of-order (\texttt{Width} = 2, 4, et 8). Le Tableau~\ref{tab:ipc_execution_a15} résume ces valeurs pour toutes les exécutions valides.
+
+\begin{table}[htp]
+    \centering
+    \caption{Valeurs de l'IPC en fonction de la largeur (Width) et du nombre de threads}
+    \begin{tabular}{ccccc}
+        \hline\hline
+        \textbf{Largeur (Width)} & \textbf{Threads ($T$)} & \textbf{Insts Max CPU} & \textbf{Cycles Max CPU} & \textbf{IPC Max CPU} \\
+        \hline\hline
+        2 & 2  & 15166137 & 8292682 & \textbf{1.871782} \\
+        2 & 4  & 7789100  & 4493355 & 1.807081 \\
+        2 & 32 & 1338205  & 2918550 & 0.468555 \\
+        2 & 64 & 881618   & 2805332 & 0.314265 \\
+        \hline
+        4 & 2  & 15166624 & 7058008 & \textbf{2.218795} \\
+        4 & 4  & 7788713  & 4139440 & 1.977961 \\
+        4 & 8  & 4101352  & 3202980 & 1.437325 \\
+        4 & 16 & 2258180  & 2978819 & 0.849159 \\
+        4 & 32 & 1338295  & 2890473 & 0.516483 \\
+        \hline
+        8 & 2  & 15166624 & 6980957 & \textbf{2.244788} \\
+        8 & 4  & 7788720  & 4136693 & 1.979324 \\
+        8 & 8  & 4142778  & 3211012 & 1.476444 \\
+        8 & 16 & 2306598  & 2979155 & 0.895454 \\
+        8 & 64 & 881633   & 2806253 & 0.338429 \\
+        \hline
+    \end{tabular}
+    \label{tab:ipc_execution_a15}
+\end{table}
+
+En analysant ces résultats, nous pouvons déterminer la valeur maximale de l'IPC pour chaque configuration matérielle (largeur du processeur) :
+
+\begin{itemize}
+    \item \textbf{Pour une largeur de 2 (Width = 2) :} La valeur maximale de l'IPC est de \textbf{1.871782}, obtenue avec l'exécution à 2 threads.
+    \item \textbf{Pour une largeur de 4 (Width = 4) :} La valeur maximale de l'IPC est de \textbf{2.218795}, obtenue également avec l'exécution à 2 threads.
+    \item \textbf{Pour une largeur de 8 (Width = 8) :} La valeur maximale de l'IPC est de \textbf{2.244788}, toujours obtenue avec l'exécution à 2 threads.
+\end{itemize}
+
+\textbf{Conclusion :} Quelle que soit la configuration de la largeur du processeur superscalaire, l'IPC maximal est systématiquement atteint pour un faible niveau de parallélisme (ici, $T=2$). La valeur maximale absolue enregistrée sur l'ensemble de nos simulations est \textbf{2.244788} (Configuration : Width=8, Threads=2). L'augmentation du nombre de threads entraîne ensuite une chute significative de l'IPC du cœur critique, principalement due à la réduction de la charge de travail par thread et à l'augmentation des surcoûts liés à la synchronisation.
