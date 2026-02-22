@@ -1,0 +1,64 @@
+\subsection{Q2 --- Paramètres configurables du CPU O3 (DerivO3CPU)}
+
+\begin{formal}
+\textbf{Objectif.}\\
+Identifier des paramètres configurables du processeur \textit{out-of-order} de gem5 (\texttt{DerivO3CPU}) et préciser, pour chacun, sa valeur par défaut ainsi que son rôle.
+\end{formal}
+
+\subsubsection*{Méthode (où chercher les paramètres)}
+Sur les machines ENSTA, les paramètres du CPU O3 sont définis dans le fichier Python
+\texttt{O3CPU.py} (répertoire \texttt{src/cpu/o3} de gem5).  
+Pour lister rapidement les paramètres et leurs valeurs par défaut, on se place dans le dossier du CPU O3 puis on filtre les lignes contenant \texttt{Param.} :
+
+\begin{verbatim}
+cd /auto/g/gbusnot/ES201/tools/TP5/gem5-stable/src/cpu/o3
+grep -n "Param\." O3CPU.py
+\end{verbatim}
+
+Le \texttt{grep -n} affiche les numéros de ligne, ce qui permet de retrouver facilement la définition exacte des paramètres dans \texttt{O3CPU.py}.
+
+\subsubsection*{Sélection de 5 paramètres (valeur par défaut + impact)}
+Nous avons choisi des paramètres liés (i) à la fenêtre OoO (ROB / IQ), (ii) au sous-système mémoire spéculatif (Load/Store Queues), et (iii) à la prédiction de branchement, car ce sont des éléments déterminants pour l’IPC et la performance globale.
+
+\begin{table}[H]
+\centering
+\caption{Paramètres \texttt{DerivO3CPU} (extraits de \texttt{O3CPU.py})}
+
+\scriptsize
+\setlength{\tabcolsep}{4pt}           % menos espacio horizontal entre columnas
+\renewcommand{\arraystretch}{1.35}    % más aire vertical dentro de cada fila
+
+\begin{tabular}{@{}p{0.22\linewidth} p{0.18\linewidth} p{0.56\linewidth}@{}}
+\toprule
+\textbf{Paramètre} & \textbf{Valeur par défaut} & \textbf{Rôle / impact (résumé)} \\
+\midrule
+
+\texttt{numROBEntries} & \texttt{192} &
+Taille du \textit{Reorder Buffer} : nb. d’instructions ``en vol''.
+Plus grand $\Rightarrow$ meilleure exploitation de l’ILP et masquage de latences. \\
+\addlinespace[0.45em]
+
+\texttt{numIQEntries} & \texttt{64} &
+Taille de l’\textit{Issue Queue} : instructions prêtes à être émises.
+Limite la fenêtre effective (même si le ROB est grand). \\
+\addlinespace[0.45em]
+
+\texttt{LQEntries} & \texttt{32} &
+\textit{Load Queue} : nb. de loads suivis/pendants en OoO.
+Important pour le recouvrement mémoire et la gestion des dépendances. \\
+\addlinespace[0.45em]
+
+\texttt{SQEntries} & \texttt{32} &
+\textit{Store Queue} : nb. de stores en vol avant écriture en cache/mémoire.
+Impact sur le débit mémoire et les dépendances load-after-store. \\
+\addlinespace[0.45em]
+
+\texttt{branchPred} & \url{TournamentBP(numThreads=Parent.numThreads)} &
+Prédicteur de branchements par défaut.
+Une mauvaise prédiction provoque des \textit{flush/squash} et dégrade l’IPC. \\
+
+\bottomrule
+\end{tabular}
+
+\normalsize
+\end{table}
