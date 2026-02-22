@@ -1,3 +1,12 @@
 \section{Conclusion}
 
-% Synthèse des résultats + limites + pistes d’amélioration.
+Ce travail a permis de caractériser le comportement d'une application parallèle sur différentes architectures multicoeurs simulées. Nos résultats confirment la loi d'Amdahl et les limites pratiques du parallélisme : si le speedup augmente avec le nombre de cœurs, il finit par plafonner, voire régresser, lorsque la communication (bus, cohérence) devient le facteur limitant.
+
+Nous avons observé que pour une application fortement dépendante de la mémoire comme la multiplication de matrices :
+\begin{enumerate}
+    \item Le processeur \textbf{out-of-order (A15)} offre la meilleure performance brute, mais son IPC s'effondre lorsque le nombre de threads augmente, saturant la bande passante mémoire.
+    \item L'augmentation de la largeur du processeur (\texttt{Width}) n'a qu'un impact minime, prouvant que le goulot d'étranglement se situe au niveau du sous-système mémoire et non du calcul.
+    \item Le processeur \textbf{in-order (A7)}, bien que plus lent individuellement, présente une \textbf{efficacité surfacique} bien supérieure.
+\end{enumerate}
+
+\textbf{Perspectives :} Pour améliorer davantage les performances, il serait nécessaire de remplacer le bus partagé par un réseau sur puce (NoC) pour réduire la contention, ou d'optimiser l'algorithme (ex: blocking/tiling) pour mieux exploiter la localité spatiale des caches.

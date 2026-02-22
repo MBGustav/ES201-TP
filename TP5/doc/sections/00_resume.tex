@@ -1,4 +1,3 @@
 \section{Résumé}
 
-% 6--10 lignes: objectif du TP5, approche, résultats clés (IPC, CPI, miss rates, speedup, etc.)
-% À remplir à la fin.
+Ce TP5 porte sur l'analyse des performances des architectures multicoeurs (CMP) à travers l'exécution d'une application de multiplication de matrices parallélisée avec OpenMP sur le simulateur gem5. Nous avons étudié l'impact du nombre de cœurs et du type de microarchitecture (in-order Cortex A7 et out-of-order Cortex A15) sur des métriques clés telles que le nombre de cycles, l'IPC et le Speedup. Les résultats montrent une accélération initiale avec l'ajout de threads, suivie d'une saturation des performances due à la contention sur le bus mémoire partagé et aux surcoûts de synchronisation. De plus, l'analyse comparative révèle que l'architecture Cortex A7 offre une meilleure efficacité surfacique que le Cortex A15 pour cette charge de travail, l'augmentation de la largeur d'émission (Width) sur le A15 n'apportant que des gains marginaux face au goulot d'étranglement mémoire.

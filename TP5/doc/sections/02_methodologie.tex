@@ -1,5 +1,20 @@
 \section{Méthodologie}
 
-% Environnement: machine, compilation, commandes, scripts.
-% Métriques: IPC, CPI, numCycles, miss rate, etc.
-% Protocole expérimental: paramètres, runs, répétitions, collecte stats.txt.
+\subsection*{Environnement de simulation}
+Les expériences sont menées sur le simulateur \textbf{gem5} en mode \textit{System Emulation} (SE). Nous simulons une architecture CMP basée sur un bus partagé, avec des caches L1 privés et une mémoire unifiée. Le programme testé, \texttt{test\_omp}, effectue une multiplication de matrices parallélisée via la librairie OpenMP.
+
+\subsection*{Paramètres et Protocole}
+Nous utilisons les scripts de configuration Python de gem5 (\texttt{se.py}) pour faire varier les paramètres architecturaux :
+\begin{itemize}
+    \item \textbf{Modèles de CPU :} \texttt{arm\_detailed} pour le Cortex A7 (in-order) et \texttt{o3} pour le Cortex A15 (out-of-order).
+    \item \textbf{Parallélisme :} Variation du nombre de cœurs/threads ($n$) de 1 à 16 (ou plus selon les cas).
+    \item \textbf{Architecture A15 :} Variation de la largeur d'émission (\texttt{Width}) de 2, 4 à 8 voies.
+\end{itemize}
+
+\subsection*{Métriques}
+Les données brutes sont extraites du fichier \texttt{m5out/stats.txt} généré après chaque simulation. Les principales métriques analysées sont :
+\begin{itemize}
+    \item \textbf{Cycles d'exécution :} \texttt{system.cpu.numCycles} (déterminé par le cœur le plus lent).
+    \item \textbf{IPC (Instructions Per Cycle) :} Calculé via le rapport instructions totales / cycles totaux.
+    \item \textbf{Speedup :} Rapport entre le temps d'exécution séquentiel (1 thread) et parallèle ($n$ threads).
+\end{itemize}

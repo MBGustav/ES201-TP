@@ -1,5 +1,13 @@
 \section{Introduction}
 
-% Contexte: TP5 microprocesseurs (gem5 / multicore / etc.)
-% Objectif général: répondre aux Q1--Q14 en étudiant ...
-% Plan du rapport.
+Avec la fin de la montée en fréquence des processeurs due aux contraintes thermiques, l'amélioration des performances informatiques repose désormais majoritairement sur le parallélisme au niveau des threads (TLP) et les architectures Chip MultiProcessor (CMP). Cependant, multiplier les cœurs sur une puce introduit de nouveaux défis architecturaux, notamment la gestion de la cohérence de cache et le partage des ressources mémoire.
+
+L'objectif général de ce TP est d'explorer ces architectures CMP en utilisant le simulateur gem5. Nous chercherons à comprendre comment les performances d'une application parallèle (multiplication de matrices) évoluent en fonction des paramètres matériels.
+Le rapport s'articule autour des points suivants :
+\begin{itemize}
+    \item Une analyse théorique de la hiérarchie mémoire et de la cohérence de cache.
+    \item L'exploration des paramètres configurables des processeurs simulés.
+    \item Une étude de performance sur des cœurs scalaires in-order (type Cortex A7).
+    \item Une étude approfondie sur des cœurs superscalaires out-of-order (type Cortex A15), en variant la largeur du pipeline.
+    \item Une synthèse sur l'efficacité surfacique pour déterminer la configuration la plus rentable.
+\end{itemize}
