@@ -38,8 +38,9 @@ TP5/doc/rap.synctex.gz
 **/.vscode/**
 
 **/gem5-stable/**
-TP5/doc/rap.aux
-TP5/doc/rap.fdb_latexmk
-TP5/doc/rap.fls
-TP5/doc/rap.synctex.gz
-TP5/doc/rap.toc
+**/rap.aux
+**/rap.fdb_latexmk
+**/rap.fls
+**/rap.synctex.gz
+**/rap.toc
+**/rap.aux
