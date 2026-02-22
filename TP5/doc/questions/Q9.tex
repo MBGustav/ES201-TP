@@ -1,9 +1,79 @@
 \subsection{Q9 --- Titre de la question}
+\setlength{\headheight}{13.6pt}
 
 \begin{formal}
 \textbf{Énoncé (Q9).}\\
-% Colle ici l’énoncé exact.
+Pour chaque configuration, quel est le nombre de cycles d'exécution de l'application? Vous pourrez présenter vos résultats sous forme de graphe 3 axes
 \end{formal}
 
-\subsubsection*{Réponse}
-% ...
+\textbf{Réponse (Q9).}\\
+Pour répondre à cette question, nous avons mesuré le nombre de cycles d'exécution de l'application pour différentes configurations. Les configurations testées incluent des variations dans les paramètres suivants:
+\begin{itemize}
+    \item Le nombre de threads utilisés
+    \item La taille des données traitées
+    \item Le type d'algorithme utilisé
+\end{itemize}
+
+Les résultats obtenus sont présentés dans les tableaux suivants, où chaque ligne correspond à une configuration spécifique. Les colonnes indiquent le nombre de cycles d'exécution, le nombre d'instructions exécutées, et le temps de simulation en secondes.
+
+
+\begin{table}[htp]
+    \centering
+    \caption{Cycles d'exécution pour 2 threads}
+    \begin{tabular}{cccccc}
+        \hline
+        \textbf{Width} & \textbf{IPC Max CPU} & \textbf{Cycles Max CPU} & \textbf{Insts Max CPU} & \textbf{Sim Ticks} & \textbf{Sim Seconds} \\
+        \hline\hline
+        2 & 1.871782 & 8292682 & 15166137 & 4146340500 & 0.004146 \\
+        2 & 1.807081 & 4493355 & 7789100 & 2246677000 & 0.002247 \\
+        2 & 0.468555 & 2918550 & 1338205 & 1459274500 & 0.001459 \\
+        2 & 0.314265 & 2805332 & 881618 & 1402665500 & 0.001403 \\
+        \hline
+    \end{tabular}
+    \label{tab:cycles_execution2}
+\end{table}
+
+
+\begin{table}[htp]
+    \centering
+    \caption{Cycles d'exécution pour 4 threads}
+    \begin{tabular}{ccccccc}
+        \hline\hline
+        \textbf{Width} & \textbf{IPC Max CPU} & \textbf{Cycles Max CPU} & \textbf{Insts Max CPU} & \textbf{Sim Ticks} & \textbf{Sim Seconds} \\
+        \hline\hline
+        4 & 2.218795 & 7058008 & 15166624 & 3529003500 & 0.003529 \\
+        4 & 1.977961 & 4139440 & 7788713 & 2069719500 & 0.002070 \\
+        4 & 1.437325 & 3202980 & 4101352 & 1601489500 & 0.001601 \\
+        4 & 0.849159 & 2978819 & 2258180 & 1489409000 & 0.001489 \\
+        \hline
+    \end{tabular}
+    \label{tab:cycles_execution4}
+\end{table}
+
+\begin{table}[htp]
+    \centering
+    \caption{Cycles d'exécution pour 8 threads}
+    \begin{tabular}{ccccccc}
+        \hline\hline
+        \textbf{Width} & \textbf{IPC Max CPU} & \textbf{Cycles Max CPU} & \textbf{Insts Max CPU} & \textbf{Sim Ticks} & \textbf{Sim Seconds} \\
+        \hline\hline
+        8 & 2.244788 & 6980957 & 15166624 & 3490478000 & 0.003490 \\
+        8 & 1.979324 & 4136693 & 7788720 & 2068346000 & 0.002068 \\
+        8 & 1.476444 & 3211012 & 4142778 & 1605505500 & 0.001606 \\
+        8 & 0.895454 & 2979155 & 2306598 & 1489577000 & 0.001490 \\
+        \hline
+    \end{tabular}
+    \label{tab:cycles_execution8}
+\end{table}
+
+Et enfin, etant données les resultats obtenus, nous pouvons tracer un graphe à trois axes pour visualiser l'impact de ces différentes configurations sur le nombre de cycles d'exécution. La Figure~\ref{fig:cycles_execution_graph} montre les cycles d'exécution en fonction du nombre de threads et de la taille des données traitées.
+
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imgs/cycles_execution_graph.png}
+    \caption{Graphe des cycles d'exécution en fonction du nombre de threads et de la taille des données}
+    \label{fig:cycles_execution_graph}
+\end{figure}
+
+

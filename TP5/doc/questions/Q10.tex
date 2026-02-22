@@ -2,8 +2,31 @@
 
 \begin{formal}
 \textbf{Énoncé (Q10).}\\
-% Colle ici l’énoncé exact.
+Déduire le speedup par rapport à la configuration à 1 thread.
 \end{formal}
 
-\subsubsection*{Réponse}
-% ...
+\textbf{Réponse (Q10).}\\
+
+Sachant que la formule de speedup est donnée par :
+\[
+\text{Speedup} = \frac{T_1}{T_n}
+\]
+où \( T_1 \) est le temps d'exécution de l'application avec 1 thread, et \( T_n \) est le temps d'exécution de l'application avec \( n \) threads, nous avons calculé le speedup pour chaque configuration testée.
+
+Les résultats obtenus sont présentés dans le tableau suivant, où chaque ligne correspond à une configuration spécifique. Les colonnes indiquent le nombre de threads utilisés, le temps d'exécution en secondes, le speedup calculé par rapport à la configuration à 1 thread, et le nombre de cycles.
+
+\begin{table}[h]
+    \centering
+    \caption{Speedup et cycles par rapport à la configuration à 1 thread}
+    \begin{tabular}{cccccc}
+        \hline\hline
+        \textbf{Threads} & \textbf{Time (s)} & \textbf{Speedup} & \textbf{Cycles} \\
+        \hline\hline
+        1 & 0.004146 & 1.00 & 8130212000 \\
+        2 & 0.002247 & 1.85 & 4146340500 \\
+        4 & 0.001489 & 2.78 & 2246677000 \\
+        8 & 0.001403 & 2.95 & 1601489500 \\
+        \hline
+    \end{tabular}
+    \label{tab:speedup_cycles}
+\end{table}

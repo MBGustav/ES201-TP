@@ -27,3 +27,19 @@ output*
 .core
 
 __pycache__/
+**/*.aux
+**/*.fdb_latexmk
+**/*.fls
+**/*.synctex.gz
+TP5/doc/rap.synctex.gz
+**/*.fdb_latexmk
+**/*.toc
+*/*.fls
+**/.vscode/**
+
+**/gem5-stable/**
+TP5/doc/rap.aux
+TP5/doc/rap.fdb_latexmk
+TP5/doc/rap.fls
+TP5/doc/rap.synctex.gz
+TP5/doc/rap.toc
