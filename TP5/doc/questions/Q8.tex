@@ -1,9 +1,10 @@
-\subsection{Q8 --- Titre de la question}
+\subsection{Q8 --- Discussion et interprétation (max. 10 lignes)}
 
 \begin{formal}
 \textbf{Énoncé (Q8).}\\
-% Colle ici l’énoncé exact.
+Discussion et interprétation (max. 10 lignes).
 \end{formal}
 
-\subsubsection*{Réponse}
-% ...
+On observe une cohérence entre les métriques : quand le nombre de threads augmente, $cycles_{app}$ diminue, donc le speedup (Q6) augmente. L’IPC global (Q7), calculé comme $\texttt{sim\_insts}/cycles_{app}$, a aussi tendance à croître, principalement parce que l’exécution se termine en moins de cycles.
+
+En revanche, le speedup reste clairement sous-linéaire et les gains marginaux deviennent plus faibles à grand $T$ (rendements décroissants). C’est attendu : une partie du programme reste séquentielle et il existe des coûts incompressibles liés au parallélisme (fork/join OpenMP, synchronisations/barrières). Le fait que \texttt{cpu0} soit toujours le cœur critique suggère que le thread maître et/ou les points de synchronisation jouent un rôle important. Enfin, l’IPC doit être interprété avec prudence car c’est une métrique globale sur tout le run et \texttt{sim\_insts} peut varier légèrement avec $T$ (overhead).

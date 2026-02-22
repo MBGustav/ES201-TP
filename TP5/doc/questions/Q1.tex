@@ -1,16 +1,47 @@
-\subsection{Q1 --- Titre de la question}
+\subsection{Q1 --- Hiérarchie mémoire et cohérence (multiplication de matrices)}
 
 \begin{formal}
 \textbf{Énoncé (Q1).}\\
-% Colle ici l’énoncé exact.
+En considérant que chaque thread s’exécute sur un processeur dans une architecture de type multicoeurs à base de bus et 1 niveau de cache (comme décrit Figure 21), décrivez le comportement de la hiérarchie mémoire et de la cohérence des caches pour l’algorithme de multiplication de matrices. On supposera que le thread principal se trouve sur le processeur d’indice 1.
 \end{formal}
 
-\subsubsection*{Réponse}
-% Réponse structurée: hypothèses, méthode, résultats, conclusion courte.
+\subsubsection*{Comportement global (bus + 1 niveau de cache)}
+On considère une architecture à mémoire partagée avec un bus commun, et un seul niveau de cache privé par cœur (les accès manqués vont directement en mémoire).  
+La multiplication $C = A \times B$ implique principalement :
+(i) beaucoup de lectures sur $A$ et $B$, et (ii) des écritures sur $C$.
 
-% (Optionnel) Figure:
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=0.80\linewidth]{imgs/plots/Q1_xxx.pdf}
-%   \caption{Caption Q1}
-% \end{figure}
+\subsubsection*{Hiérarchie mémoire : misses et localité}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Démarrage (cold misses).} Au début, chaque processeur subit des \textit{cold misses} car aucune ligne n’est encore présente dans son cache. Les données sont transférées depuis la mémoire par \textbf{lignes de cache} (blocs).
+  \item \textbf{Localité spatiale.} Quand un thread parcourt des éléments contigus (par exemple une ligne de $A$ ou des éléments proches de $C$), le chargement d’une ligne de cache apporte plusieurs éléments voisins, ce qui réduit les accès mémoire pour les itérations suivantes.
+  \item \textbf{Localité temporelle.} Dans la boucle interne, certains éléments peuvent être réutilisés (accumulateur de $C[i,j]$ et éléments de $A$ selon l’ordonnancement). En pratique, la réutilisation dépend fortement de l’implémentation (ordre des boucles et éventuel \textit{blocking/tiling}).
+\end{itemize}
+
+\subsubsection*{Cohérence : protocole snoopy \textit{write-invalidate}}
+Les contrôleurs de cache « écoutent » le bus (snooping). Les lignes transitent typiquement entre des états du type \textbf{Invalid}, \textbf{Shared} et \textbf{Exclusive} (selon le protocole simplifié du cours).
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Lecture de $A$ et $B$ (données majoritairement en lecture).}
+  Lorsqu’un cœur lit une ligne de $A$ ou $B$ absente de son cache, il émet une transaction de lecture sur le bus. La ligne est récupérée (depuis la mémoire, ou depuis un autre cache selon le protocole) et placée dans le cache local.  
+  Comme plusieurs threads peuvent lire les mêmes zones de $A$ ou $B$, ces lignes tendent à se retrouver en \textbf{Shared} dans plusieurs caches, ce qui est cohérent et ne nécessite pas d’invalidation.
+
+  \item \textbf{Écriture de $C$ (nécessite l’exclusivité).}
+  Quand un cœur veut écrire dans $C$, il doit obtenir la ligne correspondante en état \textbf{Exclusive}. Pour cela, il réalise une requête sur le bus (type \textit{upgrade} ou \textit{read-for-ownership}), ce qui \textbf{invalide} les copies éventuelles de cette même ligne dans les autres caches.  
+  Ceci garantit qu’il n’existe qu’un seul auteur actif de la ligne au moment de l’écriture, et donc que les autres processeurs ne lisent pas une valeur obsolète.
+\end{itemize}
+
+\subsubsection*{Rôle du thread principal sur le processeur 1}
+Le thread principal étant sur le \textbf{processeur 1} :
+\begin{itemize}[leftmargin=*]
+  \item S’il \textbf{initialise} $A$, $B$ et/ou $C$, il va charger et/ou écrire de nombreuses lignes dans son cache en premier (état plutôt \textbf{Exclusive} au départ).
+  \item Lorsque les autres processeurs commencent le calcul, ils vont provoquer des \textbf{misses} sur $A$ et $B$ et placer ces lignes en \textbf{Shared} (lecture partagée).
+  \item À la fin, si le processeur 1 \textbf{relit} $C$ (assemblage des résultats, vérification), il peut générer des misses supplémentaires, car les lignes écrites par d’autres processeurs ne sont pas forcément dans son cache.
+\end{itemize}
+
+\subsubsection*{Point important : trafic sur le bus et faux-partage}
+Avec un bus partagé et un seul niveau de cache, les performances peuvent être limitées par :
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Contention du bus} : tous les misses et toutes les transactions de cohérence passent par le bus.
+  \item \textbf{Faux-partage (false sharing)} : si deux threads écrivent dans des éléments différents de $C$ mais situés sur la \textbf{même ligne de cache}, ils vont s’invalider mutuellement (ping-pong de lignes), même sans partager la même case.  
+  En pratique, une décomposition par blocs/lignes bien alignée (chaque thread écrit des zones de $C$ séparées par lignes de cache) réduit fortement ce problème.
+\end{itemize}

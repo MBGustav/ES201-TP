@@ -1,9 +1,68 @@
-\subsection{Q7 --- Titre de la question}
+\subsection{Q7 --- Valeur maximale de l’IPC (à partir de \texttt{sim\_insts})}
 
 \begin{formal}
 \textbf{Énoncé (Q7).}\\
-% Colle ici l’énoncé exact.
+En utilisant le nombre total d’instructions simulées, déterminez quelle est la valeur maximale de l’IPC pour chaque configuration ?
 \end{formal}
 
-\subsubsection*{Réponse}
-% ...
+\subsubsection*{Définition et calcul}
+Pour chaque exécution, gem5 fournit dans \texttt{m5out/stats.txt} :
+\begin{itemize}[leftmargin=*]
+  \item \texttt{sim\_insts} : le nombre total d’instructions simulées,
+  \item $cycles_{app}$ : les cycles d’exécution de l’application (définis en Q5 comme $\max_i(\texttt{system.cpu}\langle i\rangle\texttt{.numCycles})$, voir aussi Q4--Q5).
+\end{itemize}
+On calcule alors l’IPC global par :
+\[
+IPC(T) \;=\; \frac{\texttt{sim\_insts}(T)}{cycles_{app}(T)}.
+\]
+
+\subsubsection*{Résultats}
+Comme précédemment, on reporte deux séries séparées (avec/sans L2).
+
+\paragraph{Série A --- A7 avec L2 ($T \le 8$).}
+
+\scriptsize
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.20}
+\begin{table}[H]
+\centering
+\caption{IPC --- A7 avec L2}
+\label{tab:q7_ipc_l2}
+\begin{tabular}{@{}r r r r@{}}
+\toprule
+\textbf{Threads} & \textbf{$cycles_{app}$} & \textbf{\texttt{sim\_insts}} & \textbf{IPC} \\
+\midrule
+1 & 2\,092\,404 & 4\,107\,655 & 1.963127 \\
+2 & 1\,128\,158 & 4\,132\,898 & 3.663404 \\
+4 & \ \ 646\,916 & 4\,158\,816 & 6.428680 \\
+8 & \ \ 408\,798 & 4\,216\,901 & 10.315366 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textbf{IPC maximal (avec L2) :} $IPC_{max} = 10.315366$ (configuration $T=8$).
+
+\paragraph{Série B --- A7 sans L2 ($T \le 16$).}
+
+\begin{table}[H]
+\centering
+\caption{IPC --- A7 sans L2}
+\label{tab:q7_ipc_nol2}
+\begin{tabular}{@{}r r r r@{}}
+\toprule
+\textbf{Threads} & \textbf{$cycles_{app}$} & \textbf{\texttt{sim\_insts}} & \textbf{IPC} \\
+\midrule
+1  & 2\,597\,586 & 4\,107\,655 & 1.581336 \\
+2  & 1\,508\,970 & 4\,233\,827 & 2.805773 \\
+4  & \ \ 970\,012 & 4\,369\,018 & 4.504087 \\
+8  & \ \ 705\,494 & 4\,570\,580 & 6.478553 \\
+16 & \ \ 582\,578 & 5\,008\,208 & 8.596631 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\normalsize
+
+\noindent\textbf{IPC maximal (sans L2) :} $IPC_{max} = 8.596631$ (configuration $T=16$).
+
+\subsubsection*{Observation courte}
+Dans nos mesures, l’IPC global augmente avec le nombre de threads car $cycles_{app}$ diminue fortement lorsque l’on parallélise l’exécution. Les résultats sont reportés séparément pour les séries avec L2 et sans L2.

@@ -1,0 +1,6 @@
+threads,cpu_max,cycles_app
+1,cpu0,2597586
+2,cpu0,1508970
+4,cpu0,970012
+8,cpu0,705494
+16,cpu0,582578

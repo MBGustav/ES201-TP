@@ -1,9 +1,54 @@
-\subsection{Q3 --- Titre de la question}
+\subsection{Q3 --- Valeurs par défaut des caches (L1I, L1D, L2)}
 
 \begin{formal}
-\textbf{Énoncé (Q3).}\\
-% Colle ici l’énoncé exact.
+\textbf{Objectif.}\\
+Retrouver et reporter les valeurs par défaut des paramètres de cache (tailles, associativités et taille de ligne) utilisées par \texttt{se.py} lorsque aucune option n’est passée en ligne de commande.
 \end{formal}
 
-\subsubsection*{Réponse}
-% ...
+\subsubsection*{Méthode}
+D’après l’énoncé, les valeurs par défaut sont définies dans \texttt{\$GEM5/configs/common/Options.py}.
+Dans ce fichier, elles apparaissent dans les lignes \texttt{parser.add\_option(... default=...)}.  
+Ces \texttt{default=} correspondent aux paramètres effectivement utilisés par \texttt{se.py} si l’on ne fournit pas d’options explicites au lancement.
+
+\medskip
+\noindent Exemples de recherche (optionnel) :
+\begin{verbatim}
+grep -n "l1d_size"   $GEM5/configs/common/Options.py
+grep -n "l1i_size"   $GEM5/configs/common/Options.py
+grep -n "l2_size"    $GEM5/configs/common/Options.py
+grep -n "cacheline_size" $GEM5/configs/common/Options.py
+\end{verbatim}
+
+\subsubsection*{Valeurs par défaut (Options.py)}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.25}
+
+\begin{table}[H]
+\centering
+\caption{Paramètres de cache par défaut (extraits de \texttt{Options.py})}
+\begin{tabular}{@{}p{0.16\linewidth} p{0.44\linewidth} p{0.34\linewidth}@{}}
+\toprule
+\textbf{Niveau} & \textbf{Option gem5} & \textbf{Valeur par défaut} \\
+\midrule
+L1D & \texttt{--l1d\_size} & \texttt{64kB} \\
+L1D & \texttt{--l1d\_assoc} & \texttt{2} (2-way) \\
+\addlinespace[0.35em]
+
+L1I & \texttt{--l1i\_size} & \texttt{32kB} \\
+L1I & \texttt{--l1i\_assoc} & \texttt{2} (2-way) \\
+\addlinespace[0.35em]
+
+L2 & \texttt{--l2\_size} & \texttt{2MB} \\
+L2 & \texttt{--l2\_assoc} & \texttt{8} (8-way) \\
+\addlinespace[0.35em]
+
+Global & \texttt{--cacheline\_size} & \texttt{64B} \\
+\bottomrule
+\end{tabular}
+\end{table}
+\normalsize
+
+\subsubsection*{Remarque}
+La taille de ligne est donnée par un paramètre global (\texttt{cacheline\_size}).  
+Par défaut, elle s’applique donc à la L1D, la L1I et la L2 (sauf si une configuration spécifique la surcharge ailleurs).

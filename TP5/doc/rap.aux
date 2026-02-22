@@ -13,21 +13,45 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2}Introduction}{2}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Méthodologie}{2}{section.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4}Réponses aux questions (Q1--Q14)}{2}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Q1 --- Titre de la question}{2}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Q2 --- Paramètres configurables du CPU O3 (DerivO3CPU)}{2}{subsection.4.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Paramètres \texttt  {DerivO3CPU} (extraits de \texttt  {O3CPU.py})}}{3}{table.caption.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Q3 --- Titre de la question}{3}{subsection.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Q4 --- Titre de la question}{3}{subsection.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Q5 --- Titre de la question}{3}{subsection.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Q6 --- Titre de la question}{3}{subsection.4.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Q7 --- Titre de la question}{3}{subsection.4.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Q8 --- Titre de la question}{4}{subsection.4.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Q9 --- Titre de la question}{4}{subsection.4.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Q10 --- Titre de la question}{4}{subsection.4.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Q11 --- Titre de la question}{4}{subsection.4.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Q12 --- Titre de la question}{4}{subsection.4.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.13}Q13 --- Titre de la question}{4}{subsection.4.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.14}Q14 --- Titre de la question}{5}{subsection.4.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{5}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {A}Annexe A --- Reproductibilité}{5}{appendix.A}\protected@file@percent }
-\gdef \@abspage@last{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Q1 --- Hiérarchie mémoire et cohérence (multiplication de matrices)}{2}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Q2 --- Paramètres configurables du CPU O3 (DerivO3CPU)}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Paramètres \texttt  {DerivO3CPU} (extraits de \texttt  {O3CPU.py})}}{4}{table.caption.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Q3 --- Valeurs par défaut des caches (L1I, L1D, L2)}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Paramètres de cache par défaut (extraits de \texttt  {Options.py})}}{5}{table.caption.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Q4 --- Processeur critique : maximum de cycles et cycles totaux de l’application}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Série avec L2 (jusqu’à 8 threads).}{6}{paragraph*.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cœur critique (max \texttt  {numCycles}) --- Série avec L2}}{6}{table.caption.4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:q4_cycles_l2}{{3}{6}{Cœur critique (max \texttt {numCycles}) --- Série avec L2}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Série sans L2 (jusqu’à 16 threads).}{6}{paragraph*.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cœur critique (max \texttt  {numCycles}) --- Série sans L2}}{6}{table.caption.6}\protected@file@percent }
+\newlabel{tab:q4_cycles_nol2}{{4}{6}{Cœur critique (max \texttt {numCycles}) --- Série sans L2}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Q5 --- Nombre de cycles d’exécution de l’application}{7}{subsection.4.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Q5 --- \texttt  {cycles\_app} vs threads (A7, avec L2, $T\le 8$).}}{8}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:q5_a7_l2}{{1}{8}{Q5 --- \texttt {cycles\_app} vs threads (A7, avec L2, $T\le 8$)}{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Q5 --- \texttt  {cycles\_app} vs threads (A7, sans L2, $T\le 16$).}}{8}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:q5_a7_nol2}{{2}{8}{Q5 --- \texttt {cycles\_app} vs threads (A7, sans L2, $T\le 16$)}{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Q6 --- Speedup par rapport à la configuration à 1 thread}{9}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Série A --- A7 avec L2 (base : $cycles_{app}(1)=2\,092\,404$).}{9}{paragraph*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Speedup vs 1 thread --- A7 avec L2}}{9}{table.caption.10}\protected@file@percent }
+\newlabel{tab:q6_speedup_l2}{{5}{9}{Speedup vs 1 thread --- A7 avec L2}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Série B --- A7 sans L2 (base : $cycles_{app}(1)=2\,597\,586$).}{10}{paragraph*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Speedup vs 1 thread --- A7 sans L2}}{10}{table.caption.12}\protected@file@percent }
+\newlabel{tab:q6_speedup_nol2}{{6}{10}{Speedup vs 1 thread --- A7 sans L2}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Q7 --- Valeur maximale de l’IPC (à partir de \texttt  {sim\_insts})}{10}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Série A --- A7 avec L2 ($T \le 8$).}{10}{paragraph*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces IPC --- A7 avec L2}}{10}{table.caption.14}\protected@file@percent }
+\newlabel{tab:q7_ipc_l2}{{7}{10}{IPC --- A7 avec L2}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Série B --- A7 sans L2 ($T \le 16$).}{11}{paragraph*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces IPC --- A7 sans L2}}{11}{table.caption.16}\protected@file@percent }
+\newlabel{tab:q7_ipc_nol2}{{8}{11}{IPC --- A7 sans L2}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Q8 --- Discussion et interprétation (max. 10 lignes)}{11}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Q9 --- Titre de la question}{11}{subsection.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Q10 --- Titre de la question}{12}{subsection.4.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Q11 --- Titre de la question}{12}{subsection.4.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Q12 --- Titre de la question}{12}{subsection.4.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.13}Q13 --- Titre de la question}{12}{subsection.4.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.14}Q14 --- Titre de la question}{12}{subsection.4.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{12}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Annexe A --- Reproductibilité}{12}{appendix.A}\protected@file@percent }
+\gdef \@abspage@last{13}

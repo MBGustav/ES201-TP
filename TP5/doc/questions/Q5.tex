@@ -1,9 +1,41 @@
-\subsection{Q5 --- Titre de la question}
+\subsection{Q5 --- Nombre de cycles d’exécution de l’application}
 
 \begin{formal}
 \textbf{Énoncé (Q5).}\\
-% Colle ici l’énoncé exact.
+Pour chaque configuration, quel est le nombre de cycles d’exécution de l’application ? Vous pourrez présenter vos résultats sous forme de graphe 2 axes.
 \end{formal}
 
-\subsubsection*{Réponse}
-% ...
+\subsubsection*{Définition de la métrique}
+Nous définissons le nombre de cycles d’exécution de l’application comme le nombre de cycles du \textbf{cœur critique} (le plus lent), c’est-à-dire :
+\[
+cycles_{app} \;=\; \max_i \big( \texttt{system.cpu}\langle i\rangle\texttt{.numCycles} \big).
+\]
+Cette valeur est extraite de \texttt{m5out/stats.txt}.  
+Contexte : Cortex-A7 (\texttt{--cpu-type=arm\_detailed}), \texttt{size=64} et \texttt{nthreads = ncores}.
+
+\subsubsection*{Valeurs numériques (référence à Q4)}
+Les valeurs de \texttt{cycles\_app} pour chaque configuration correspondent exactement au maximum de \texttt{numCycles} identifié en Q4.
+Elles sont donc déjà reportées dans les Tables~\ref{tab:q4_cycles_l2} (série avec L2) et~\ref{tab:q4_cycles_nol2} (série sans L2).
+
+\subsubsection*{Graphe 2 axes}
+Les Figures~\ref{fig:q5_a7_l2} et~\ref{fig:q5_a7_nol2} représentent \texttt{cycles\_app} en fonction du nombre de threads (avec \texttt{nthreads = ncores}).
+Nous séparons les deux séries (avec/sans L2), car la hiérarchie mémoire n’est pas la même.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\linewidth]{figures/Q5_cycles_A7_L2_upto8.png}
+  \caption{Q5 --- \texttt{cycles\_app} vs threads (A7, avec L2, $T\le 8$).}
+  \label{fig:q5_a7_l2}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\linewidth]{figures/Q5_cycles_A7_noL2_upto16.png}
+  \caption{Q5 --- \texttt{cycles\_app} vs threads (A7, sans L2, $T\le 16$).}
+  \label{fig:q5_a7_nol2}
+\end{figure}
+
+\subsubsection*{Observation (sans interprétation avancée)}
+Dans les deux séries, \texttt{cycles\_app} diminue lorsque le nombre de threads augmente, ce qui traduit une exécution plus rapide avec davantage de cœurs.  
+La diminution est très forte entre 1$\rightarrow$2 et 2$\rightarrow$4, puis devient moins marquée lorsque l’on continue à augmenter le parallélisme.  
+Enfin, comme la hiérarchie mémoire change (avec/sans L2), on interprète chaque courbe séparément, sans comparer directement les valeurs absolues entre séries.

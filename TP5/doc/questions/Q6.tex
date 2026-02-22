@@ -1,9 +1,58 @@
-\subsection{Q6 --- Titre de la question}
+\subsection{Q6 --- Speedup par rapport à la configuration à 1 thread}
 
 \begin{formal}
 \textbf{Énoncé (Q6).}\\
-% Colle ici l’énoncé exact.
+Déduire le speedup par rapport à la configuration à 1 thread.
 \end{formal}
 
-\subsubsection*{Réponse}
-% ...
+\subsubsection*{Définition}
+À fréquence constante, le temps d’exécution est proportionnel au nombre de cycles.  
+On en déduit le speedup par rapport à 1 thread :
+\[
+\text{Speedup}(T) \;=\; \frac{cycles_{app}(1)}{cycles_{app}(T)},
+\]
+où $cycles_{app}(T)$ est défini en Q5 comme le maximum de \texttt{numCycles} (cœur critique). Les valeurs de $cycles_{app}(T)$ sont celles déjà reportées en Q4 (Tables~\ref{tab:q4_cycles_l2} et~\ref{tab:q4_cycles_nol2}).
+
+\subsubsection*{Résultats}
+Nous calculons le speedup séparément pour les deux séries (avec/sans L2), car les bases ($cycles_{app}(1)$) ne sont pas identiques.
+
+\paragraph{Série A --- A7 avec L2 (base : $cycles_{app}(1)=2\,092\,404$).}
+
+\scriptsize
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\begin{table}[H]
+\centering
+\caption{Speedup vs 1 thread --- A7 avec L2}
+\label{tab:q6_speedup_l2}
+\begin{tabular}{@{}r r r@{}}
+\toprule
+\textbf{Threads ($T$)} & \textbf{$cycles_{app}(T)$} & \textbf{Speedup$(T)$} \\
+\midrule
+1 & 2\,092\,404 & 1.000 \\
+2 & 1\,128\,158 & 1.855 \\
+4 & \ \ 646\,916 & 3.234 \\
+8 & \ \ 408\,798 & 5.118 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Série B --- A7 sans L2 (base : $cycles_{app}(1)=2\,597\,586$).}
+
+\begin{table}[H]
+\centering
+\caption{Speedup vs 1 thread --- A7 sans L2}
+\label{tab:q6_speedup_nol2}
+\begin{tabular}{@{}r r r@{}}
+\toprule
+\textbf{Threads ($T$)} & \textbf{$cycles_{app}(T)$} & \textbf{Speedup$(T)$} \\
+\midrule
+1  & 2\,597\,586 & 1.000 \\
+2  & 1\,508\,970 & 1.721 \\
+4  & \ \ 970\,012 & 2.678 \\
+8  & \ \ 705\,494 & 3.682 \\
+16 & \ \ 582\,578 & 4.459 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\normalsize

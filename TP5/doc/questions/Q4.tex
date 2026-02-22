@@ -1,9 +1,75 @@
-\subsection{Q4 --- Titre de la question}
+\subsection{Q4 --- Processeur critique : maximum de cycles et cycles totaux de l’application}
 
 \begin{formal}
 \textbf{Énoncé (Q4).}\\
-% Colle ici l’énoncé exact.
+Déterminez quel est le processeur exécutant toujours le plus grand nombre de cycles. Expliquez pourquoi. Expliquez également pourquoi l’analyse du nombre de cycles sur ce processeur revient à analyser le nombre total de cycles d’exécution de l’application.
 \end{formal}
 
-\subsubsection*{Réponse}
-% ...
+\subsubsection*{Note méthodologique (deux séries de mesures)}
+Dans le TP, l’activation de la hiérarchie de cache se fait avec \texttt{--caches} (L1) et, pour ajouter une L2, avec \texttt{--l2cache}.  
+Nous avons réalisé une série \textbf{avec L2} jusqu’à $T \le 8$ (\texttt{--caches --l2cache}). En revanche, pour $T=16$ avec L2, la simulation n’a pas produit de statistiques exploitables (\texttt{stats.txt} invalide / exécution non finalisée).  
+Pour pouvoir inclure $T=16$ (avec la contrainte du TP : \textit{n threads} = \textit{n cœurs}), nous avons donc réalisé une seconde série \textbf{sans L2} ($T \le 16$) en gardant uniquement \texttt{--caches}.  
+Les deux séries sont reportées séparément (elles ne sont pas directement comparables en cycles absolus puisque la hiérarchie mémoire change).
+
+\subsubsection*{Méthode (extraction des cycles)}
+Pour chaque exécution, nous avons extrait depuis \texttt{m5out/stats.txt} la statistique \texttt{system.cpu<i>.numCycles} (nombre de cycles simulés par cœur).  
+Le processeur « critique » est identifié comme celui qui maximise \texttt{numCycles} sur l’ensemble des cœurs.  
+En mono-cœur ($T=1$), gem5 reporte \texttt{system.cpu.numCycles} (sans indice), que l’on interprète comme le cœur \texttt{cpu0}.
+
+\subsubsection*{Résultat : cœur ayant le plus grand nombre de cycles}
+\paragraph{Série avec L2 (jusqu’à 8 threads).}
+
+\scriptsize
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+
+\begin{table}[H]
+\centering
+\caption{Cœur critique (max \texttt{numCycles}) --- Série avec L2}
+\label{tab:q4_cycles_l2}
+\begin{tabular}{@{}rll@{}}
+\toprule
+\textbf{Threads} & \textbf{CPU max} & \textbf{$cycles_{app}=\max_i(numCycles_i)$} \\
+\midrule
+1 & cpu0 & 2\,092\,404 \\
+2 & cpu0 & 1\,128\,158 \\
+4 & cpu0 & \ \ 646\,916 \\
+8 & cpu0 & \ \ 408\,798 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Série sans L2 (jusqu’à 16 threads).}
+
+\begin{table}[H]
+\centering
+\caption{Cœur critique (max \texttt{numCycles}) --- Série sans L2}
+\label{tab:q4_cycles_nol2}
+\begin{tabular}{@{}rll@{}}
+\toprule
+\textbf{Threads} & \textbf{CPU max} & \textbf{$cycles_{app}=\max_i(numCycles_i)$} \\
+\midrule
+1  & cpu0 & 2\,597\,586 \\
+2  & cpu0 & 1\,508\,970 \\
+4  & cpu0 & \ \ 970\,012 \\
+8  & cpu0 & \ \ 705\,494 \\
+16 & cpu0 & \ \ 582\,578 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\normalsize
+
+\noindent\textbf{Conclusion :} sur toutes les configurations mesurées, le processeur accumulant le plus grand nombre de cycles est toujours \texttt{cpu0}.
+
+\subsubsection*{Pourquoi est-ce souvent \texttt{cpu0} ?}
+Dans un programme OpenMP, un \textbf{thread maître} (master) gère typiquement l’initialisation, le lancement du parallélisme (\textit{fork/join}) et une partie des synchronisations (barrières, fin de région parallèle, etc.).  
+Dans notre configuration, ce thread maître est naturellement associé au premier cœur (\texttt{cpu0}), ce qui tend à lui faire cumuler légèrement plus de travail global (ou des phases d’attente/synchronisation) et donc un \texttt{numCycles} maximal.
+
+\subsubsection*{Pourquoi le max des cycles correspond aux cycles totaux de l’application ?}
+L’application parallèle se termine quand le \textbf{dernier thread} termine (le plus lent). Autrement dit, le temps d’exécution global (\textit{makespan}) est déterminé par le cœur qui exécute le plus de cycles.  
+On peut donc estimer les cycles totaux de l’application par :
+\[
+cycles_{app} \;=\; \max_i \big( numCycles(\text{cpu}_i) \big).
+\]
+Les autres cœurs peuvent finir plus tôt puis attendre (barrière, join), mais la fin globale est imposée par le cœur critique ; analyser ses cycles revient donc à analyser la durée totale d’exécution de l’application.
