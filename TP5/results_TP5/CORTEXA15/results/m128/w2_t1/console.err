@@ -1,0 +1,6 @@
+/workspace/gem5-stable/configs/common/CacheConfig.py:48: SyntaxWarning: import * only allowed at module level
+  def config_cache(options, system):
+warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (512 Mbytes)
+0: system.remote_gdb.listener: listening for remote gdb on port 7000
+warn: ignoring syscall futex(621460, ...)
+      (further warnings will be suppressed)

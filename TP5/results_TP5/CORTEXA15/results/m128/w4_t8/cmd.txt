@@ -1,0 +1,6 @@
+OMP_NUM_THREADS=8 \
+"/workspace/gem5-stable/build/ARM/gem5.fast" --outdir="/workspace/TP5/CORTEXA15/results/m128/w4_t8" \
+  "/workspace/gem5-stable/configs/example/se.py" \
+  --caches --l2cache \
+  -n 8 --cpu-type=detailed --o3-width=4 \
+  -c "/workspace/m5threads/tests/test_omp" -o "8 128"
